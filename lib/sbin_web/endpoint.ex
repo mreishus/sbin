@@ -42,5 +42,7 @@ defmodule SbinWeb.Endpoint do
     key: "_sbin_key",
     signing_salt: "FQx3f20j"
 
+  plug Pow.Plug.Session, otp_app: :sbin
+
   plug SbinWeb.Router
 end

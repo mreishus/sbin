@@ -47,7 +47,8 @@ defmodule Sbin.MixProject do
       {:credo, ">= 0.0.0", only: :dev, runtime: false},
       {:dialyxir, ">= 0.0.0", only: :dev, runtime: false},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
-      {:sobelow, ">= 0.0.0", only: :dev, runtime: false}
+      {:sobelow, ">= 0.0.0", only: :dev, runtime: false},
+      {:pow, "~> 1.0.13"}
     ]
   end
 

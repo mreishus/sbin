@@ -1,5 +1,6 @@
 defmodule SbinWeb.Router do
   use SbinWeb, :router
+  use Pow.Phoenix.Router
 
   pipeline :browser do
     plug(:accepts, ["html"])
@@ -14,10 +15,27 @@ defmodule SbinWeb.Router do
     plug(:accepts, ["json"])
   end
 
-  scope "/", SbinWeb do
-    pipe_through(:browser)
+  pipeline :protected do
+    plug Pow.Plug.RequireAuthenticated,
+      error_handler: Pow.Phoenix.PlugErrorHandler
+  end
 
-    get("/", PageController, :index)
+  scope "/" do
+    pipe_through :browser
+
+    pow_routes()
+  end
+
+  scope "/", SbinWeb do
+    pipe_through :browser
+
+    get "/", PageController, :index
+  end
+
+  scope "/", SBinWeb do
+    pipe_through [:browser, :protected]
+
+    # Add your protected routes here
   end
 
   # Other scopes may use custom stacks.
