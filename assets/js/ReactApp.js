@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 class ReactApp extends React.Component {
   render() {
+    let g = 5;
     return (
       <div>
         This is a react app
