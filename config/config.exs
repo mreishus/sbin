@@ -28,7 +28,8 @@ config :phoenix, :json_library, Jason
 # Pow authentication
 config :sbin, :pow,
   user: Sbin.Users.User,
-  repo: Sbin.Repo
+  repo: Sbin.Repo,
+  web_module: SbinWeb
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
