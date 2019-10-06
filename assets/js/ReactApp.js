@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
 
-class ReactApp extends React.Component {
+class ReactApp extends Component {
   render() {
-    let g = 5;
     return (
       <div>
         This is a react app
