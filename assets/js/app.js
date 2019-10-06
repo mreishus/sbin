@@ -16,18 +16,20 @@ import "phoenix_html";
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
 
+/////////////////////////
+/////////////////// REACT
+/////////////////////////
+
 import React from "react";
 import { render } from "react-dom";
-import App from "./components/App";
+import App from "./app/App";
 
-import { configureStore } from "redux-starter-kit";
 import { Provider } from "react-redux";
-import rootReducer from "./reducers";
+import store from "./store";
 
-const store = configureStore({
-  reducer: rootReducer
-});
-
+// We could add HMR support here, but it doesn't seem worth
+// it unless we change phoenix to load JS files off a different
+// port in development, so that webpack would be the dev server.
 let $$ = f => document.getElementById(f);
 if ($$("react-app-root")) {
   render(
