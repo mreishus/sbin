@@ -18,7 +18,7 @@ import "phoenix_html";
 
 import React from "react";
 import { render } from "react-dom";
-import ReactApp from "./ReactApp";
+import App from "./components/App";
 
 import { configureStore } from "redux-starter-kit";
 import { Provider } from "react-redux";
@@ -32,7 +32,7 @@ let $$ = f => document.getElementById(f);
 if ($$("react-app-root")) {
   render(
     <Provider store={store}>
-      <ReactApp />
+      <App />
     </Provider>,
     $$("react-app-root")
   );
