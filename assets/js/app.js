@@ -17,10 +17,23 @@ import "phoenix_html";
 // import socket from "./socket"
 
 import React from "react";
-import ReactDOM from "react-dom";
+import { render } from "react-dom";
 import ReactApp from "./ReactApp";
+
+import { configureStore } from "redux-starter-kit";
+import { Provider } from "react-redux";
+import rootReducer from "./reducers";
+
+const store = configureStore({
+  reducer: rootReducer
+});
 
 let $$ = f => document.getElementById(f);
 if ($$("react-app-root")) {
-  ReactDOM.render(<ReactApp />, $$("react-app-root"));
+  render(
+    <Provider store={store}>
+      <ReactApp />
+    </Provider>,
+    $$("react-app-root")
+  );
 }
