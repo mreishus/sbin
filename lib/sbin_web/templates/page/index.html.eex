@@ -1,3 +1,12 @@
 <div class="bg-blue-200 p-2 rounded">
   Page Index
+  <%= if Pow.Plug.current_user(@conn) do %>
+    <span><%= link "Sign out", to: Routes.pow_session_path(@conn, :delete), 
+  method: :delete, class: 'text-blue-600 underline' %></span>
+  <% else %>
+    <span><%= link "Register", to: Routes.pow_registration_path(@conn, :new),
+  class: 'text-blue-600 underline'%></span>
+    <span><%= link "Sign in", to: Routes.pow_session_path(@conn, :new),
+  class: 'text-blue-600 underline'%></span>
+  <% end %>
 </div>
