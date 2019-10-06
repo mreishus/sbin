@@ -10,3 +10,5 @@
   class: 'text-blue-600 underline'%></span>
   <% end %>
 </div>
+
+<div id="react-app-root" />
