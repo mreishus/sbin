@@ -12,7 +12,7 @@ defmodule SbinWeb.CSPHeader do
 
   defp csp(conn) do
     "default-src 'self'; \
-    connect-src 'self' #{ws_url(conn)} #{ws_url(conn, "wss")}; \
+    connect-src 'self' #{ws_url(conn)} #{ws_url(conn, "wss")}  https://jsonplaceholder.typicode.com/ ; \
     script-src 'self' 'unsafe-inline' 'unsafe-eval'; \
     style-src 'self' 'unsafe-inline' 'unsafe-eval'"
   end

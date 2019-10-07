@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
+import axios from "axios";
 import { setUsers, addUser } from "./usersSlice";
 
 export const Users = props => {
@@ -12,6 +13,12 @@ export const Users = props => {
   const addUserC = useCallback(() => {
     dispatch(addUser("u99"));
   }, [dispatch]);
+
+  const testGetUsers = useCallback(async () => {
+    const res = await axios.get("https://jsonplaceholder.typicode.com/users");
+    const { data } = res;
+    console.log({ data });
+  }, []);
 
   const users = useSelector(state => state.users);
   return (
@@ -25,6 +32,11 @@ export const Users = props => {
       <div className="mt-4">
         <button onClick={addUserC} className="btn btn-primary">
           Add "u99" user
+        </button>
+      </div>
+      <div className="mt-4">
+        <button onClick={testGetUsers} className="btn btn-primary">
+          testGetUsers
         </button>
       </div>
       <div className="mt-4">
