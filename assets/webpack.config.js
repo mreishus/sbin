@@ -6,6 +6,9 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = (env, options) => ({
+  resolve: {
+    extensions: [".tsx", ".ts", ".js", ".json"]
+  },
   optimization: {
     minimizer: [
       new TerserPlugin({ cache: true, parallel: true, sourceMap: false }),
