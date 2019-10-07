@@ -1,5 +1,6 @@
-import { configureStore } from "redux-starter-kit";
-import rootReducer from "./reducers";
+import { configureStore, ActionCreator, Action } from "redux-starter-kit";
+import { ThunkAction } from "redux-thunk";
+import rootReducer, { RootState } from "./reducers";
 
 const store = configureStore({
   reducer: rootReducer
@@ -18,3 +19,5 @@ if (process.env.NODE_ENV === "development" && module.hot) {
  */
 
 export default store;
+export type AppDispatch = typeof store.dispatch;
+export type AppThunk = ThunkAction<void, RootState, null, Action<string>>;

@@ -19,6 +19,8 @@ class ReactApp extends Component {
         <div className="p-4 bg-red-100">
           <div className="text-xl mb-4">Todo example, react starter kit</div>
           <AddTodo />
+          {/* 
+          // @ts-ignore Something about react-redux connect(). */}
           <VisibleTodoList />
           <Footer />
         </div>

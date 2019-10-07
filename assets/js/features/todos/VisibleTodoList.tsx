@@ -4,12 +4,15 @@ import { toggleTodo } from "./todosSlice";
 import TodoList from "./TodoList";
 import { VisibilityFilters } from "../filters/filtersSlice";
 
-const selectTodos = state => state.todos;
-const selectFilter = state => state.visibilityFilter;
+import { RootState } from "../../reducers";
+import { TodoState } from "./todosSlice";
+
+const selectTodos = (state: RootState) => state.todos;
+const selectFilter = (state: RootState) => state.visibilityFilter;
 
 const selectVisibleTodos = createSelector(
   [selectTodos, selectFilter],
-  (todos, filter) => {
+  (todos: TodoState, filter) => {
     switch (filter) {
       case VisibilityFilters.SHOW_ALL:
         return todos;
@@ -23,7 +26,7 @@ const selectVisibleTodos = createSelector(
   }
 );
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: RootState) => ({
   todos: selectVisibleTodos(state)
 });
 

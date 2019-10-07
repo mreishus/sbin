@@ -4,7 +4,9 @@ import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import { setUsers, addUser, fetchUsers } from "./usersSlice";
 
-export const Users = props => {
+import { RootState } from "../../reducers";
+
+export const Users = () => {
   const dispatch = useDispatch();
   const setUsersC = useCallback(() => {
     dispatch(setUsers(["u1", "u2", "u3"]));
@@ -18,8 +20,8 @@ export const Users = props => {
     dispatch(fetchUsers());
   }, [dispatch]);
 
-  const isLoading = useSelector(state => state.users.isLoading);
-  const users = useSelector(state => state.users.users);
+  const isLoading = useSelector((state: RootState) => state.users.isLoading);
+  const users = useSelector((state: RootState) => state.users.users);
 
   return (
     <div>

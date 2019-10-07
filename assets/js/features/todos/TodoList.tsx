@@ -2,12 +2,19 @@ import React from "react";
 import PropTypes from "prop-types";
 import Todo from "./Todo";
 
-const TodoList = ({ todos, toggleTodo }) => (
+import { TodoState } from "./todosSlice";
+type ToggleIt = { id: number };
+interface Props {
+  todos: TodoState;
+  toggleTodo: (arg0: ToggleIt) => void;
+}
+
+const TodoList = ({ todos, toggleTodo }: Props) => (
   <ul className="list-disc">
     {todos.map(todo => (
       <Todo
         key={todo.id}
-        {...todo}
+        todo={todo}
         onClick={() => toggleTodo({ id: todo.id })}
       />
     ))}

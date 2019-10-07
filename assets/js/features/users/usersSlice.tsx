@@ -1,7 +1,14 @@
-import { createSlice } from "redux-starter-kit";
+import { createSlice, PayloadAction } from "redux-starter-kit";
 import { getUsers } from "../../api/users";
+import { AppThunk } from "../../store";
 
-const initialState = {
+interface UsersState {
+  users: Array<any>;
+  isLoading: boolean;
+  error: null | string;
+}
+
+const initialState: UsersState = {
   users: [],
   isLoading: false,
   error: null
@@ -29,8 +36,8 @@ const usersSlice = createSlice({
         users: action.payload
       };
     },
-    addUser(state, action) {
-      state.users.push(action.payload);
+    addUser(state: UsersState, { payload }: PayloadAction<any>) {
+      state.users.push(payload);
     }
   }
 });
@@ -49,7 +56,7 @@ export default usersSlice.reducer;
 /// THUNKS ///
 //////////////
 
-export const fetchUsers = () => async dispatch => {
+export const fetchUsers = (): AppThunk => async dispatch => {
   try {
     dispatch(getUsersStart());
     const users = await getUsers();

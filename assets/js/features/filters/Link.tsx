@@ -1,7 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { ReactNode } from "react";
 
-const Link = ({ active, children, setVisibilityFilter, filter }) => (
+interface Props {
+  active: boolean;
+  filter: string;
+  setVisibilityFilter: (a: string) => void;
+  children: ReactNode;
+}
+
+const Link = ({ active, children, setVisibilityFilter, filter }: Props) => (
   <button
     onClick={() => setVisibilityFilter(filter)}
     disabled={active}
@@ -10,12 +16,5 @@ const Link = ({ active, children, setVisibilityFilter, filter }) => (
     {children}
   </button>
 );
-
-Link.propTypes = {
-  active: PropTypes.bool.isRequired,
-  children: PropTypes.node.isRequired,
-  setVisibilityFilter: PropTypes.func.isRequired,
-  filter: PropTypes.string.isRequired
-};
 
 export default Link;
