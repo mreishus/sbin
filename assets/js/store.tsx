@@ -7,11 +7,14 @@ const store = configureStore({
 
 /* Hot reload support - This doesn't work because phoenix
 is serving the JS files in development, not webpack. */
+/*
+Typescript doesn't understand this, comment out for now
 if (process.env.NODE_ENV === "development" && module.hot) {
   module.hot.accept("./rootReducer", () => {
     const newRootReducer = require("./rootReducer").default;
     store.replaceReducer(newRootReducer);
   });
 }
+ */
 
 export default store;
