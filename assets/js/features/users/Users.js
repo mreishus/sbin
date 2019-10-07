@@ -1,8 +1,8 @@
+// https://iamturns.com/typescript-babel/
 import React, { useCallback } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
-import axios from "axios";
-import { setUsers, addUser } from "./usersSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { setUsers, addUser, fetchUsers } from "./usersSlice";
 
 export const Users = props => {
   const dispatch = useDispatch();
@@ -14,13 +14,13 @@ export const Users = props => {
     dispatch(addUser("u99"));
   }, [dispatch]);
 
-  const testGetUsers = useCallback(async () => {
-    const res = await axios.get("https://jsonplaceholder.typicode.com/users");
-    const { data } = res;
-    console.log({ data });
-  }, []);
+  const fetchUsersC = useCallback(() => {
+    dispatch(fetchUsers());
+  }, [dispatch]);
 
-  const users = useSelector(state => state.users);
+  const isLoading = useSelector(state => state.users.isLoading);
+  const users = useSelector(state => state.users.users);
+
   return (
     <div>
       Users
@@ -35,11 +35,14 @@ export const Users = props => {
         </button>
       </div>
       <div className="mt-4">
-        <button onClick={testGetUsers} className="btn btn-primary">
-          testGetUsers
+        <button onClick={fetchUsersC} className="btn btn-primary">
+          Fetch Users from API
         </button>
       </div>
       <div className="mt-4">
+        Loading:
+        {isLoading ? "True" : "False"}
+        <br />
         Users:
         <pre>{JSON.stringify(users)}</pre>
       </div>
