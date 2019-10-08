@@ -8,6 +8,7 @@
     "tsc": "tsc"
   },
   "dependencies": {
+    "@types/classnames": "^2.2.9",
     "@types/history": "^4.7.3",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.11",
@@ -17,6 +18,7 @@
     "@types/react-router-dom": "^5.1.0",
     "@types/webpack-env": "^1.14.0",
     "axios": "^0.19.0",
+    "classnames": "^2.2.6",
     "connected-react-router": "^6.5.2",
     "history": "^4.10.1",
     "phoenix": "file:../deps/phoenix",

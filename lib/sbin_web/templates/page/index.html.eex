@@ -11,4 +11,7 @@
   <% end %>
 </div>
 
+<span><%= link "FE Page", to: Routes.fe_path(@conn, :index, []),
+class: 'text-blue-600 underline text-xl'%></span>
+
 <!-- <div id="react-app-root" /> -->

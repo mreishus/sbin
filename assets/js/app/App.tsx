@@ -1,20 +1,17 @@
 import React from "react";
-//import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { Switch, Route, Link } from "react-router-dom";
 import TestPage from "../pages/TestPage";
 import { history } from "../store";
 
+import NotePage from "../pages/NotePage";
+
 function Home() {
-  return <h2>Home</h2>;
+  return <h2>Home??</h2>;
 }
 
 function About() {
   return <h2>About</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
 }
 
 export default function App() {
@@ -29,11 +26,14 @@ export default function App() {
           <Link to="/about" className={linkClass}>
             About
           </Link>{" "}
-          <Link to="/users" className={linkClass}>
-            Users
-          </Link>{" "}
           <Link to="/test_page" className={linkClass}>
             Test Page
+          </Link>
+          <Link
+            to="/note/2223ad00-5ab2-4e57-815d-11ce06b9d17f"
+            className={linkClass}
+          >
+            Show Note
           </Link>
         </nav>
 
@@ -46,9 +46,7 @@ export default function App() {
           <Route path="/about">
             <About />
           </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
+          <Route path="/note/:id" component={NotePage} />
           <Route path="/">
             <Home />
           </Route>
