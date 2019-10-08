@@ -6,10 +6,9 @@ interface Props {
   id: string;
 }
 
-// http://localhost:4000/api/notes/2223ad00-5ab2-4e57-815d-11ce06b9d17f
-
-export const Note = ({ id }: Props) => {
-  const [data, setData] = useState(null);
+const useDataApi = (initialUrl: string, initialData: any) => {
+  const [data, setData] = useState(initialData);
+  const [url, setUrl] = useState(initialUrl);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   useEffect(() => {
@@ -17,7 +16,7 @@ export const Note = ({ id }: Props) => {
       setIsError(false);
       setIsLoading(true);
       try {
-        const result = await axios("/api/notes/" + id);
+        const result = await axios(url);
         setData(result.data);
       } catch (error) {
         setIsError(true);
@@ -25,7 +24,20 @@ export const Note = ({ id }: Props) => {
       setIsLoading(false);
     };
     fetchData();
-  }, [id]);
+  }, [url]);
+  return { data, isLoading, isError, doFetch: setUrl };
+};
+
+//const result = await axios("/api/notes/" + id);
+
+export const Note = ({ id }: Props) => {
+  const { data, isLoading, isError, doFetch } = useDataApi(
+    `/api/notes/${id}`,
+    null
+  );
+  useEffect(() => {
+    doFetch(`/api/notes/${id}`);
+  }, [doFetch, id]);
 
   if (isError) {
     return <div>Error.</div>;
