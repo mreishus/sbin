@@ -4,7 +4,7 @@
   "scripts": {
     "deploy": "webpack --mode production",
     "watch": "webpack --mode development --watch",
-    "eslint": "eslint js/**",
+    "eslint": "eslint --ext .js,.ts,.tsx js/**",
     "tsc": "tsc"
   },
   "dependencies": {
