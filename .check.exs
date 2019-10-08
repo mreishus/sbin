@@ -9,7 +9,10 @@
     {:sobelow, "mix sobelow --config"},
 
     ## Add eslint
-    {:eslint, command: "npm run eslint", cd: "assets"}
+    {:eslint, command: "npm run eslint", cd: "assets"},
+
+    ## Typescript
+    {:typescript, command: "npm run tsc", cd: "assets"}
 
     ## curated tools may be disabled (e.g. the check for compilation warnings)
     # {:compiler, false},

@@ -4,7 +4,8 @@
   "scripts": {
     "deploy": "webpack --mode production",
     "watch": "webpack --mode development --watch",
-    "eslint": "eslint js/**"
+    "eslint": "eslint js/**",
+    "tsc": "tsc"
   },
   "dependencies": {
     "@types/jest": "^24.0.18",
