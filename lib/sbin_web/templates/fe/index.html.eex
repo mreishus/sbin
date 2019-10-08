@@ -1,5 +1,5 @@
 <div class="bg-blue-200 p-2 rounded">
-  Page Index
+  FE View
   <%= if Pow.Plug.current_user(@conn) do %>
     <span><%= link "Sign out", to: Routes.pow_session_path(@conn, :delete), 
   method: :delete, class: 'text-blue-600 underline' %></span>
@@ -11,4 +11,4 @@
   <% end %>
 </div>
 
-<!-- <div id="react-app-root" /> -->
+<div id="react-app-root" />

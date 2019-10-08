@@ -30,6 +30,7 @@ defmodule SbinWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/fe/*path", FeController, :index
   end
 
   scope "/", SBinWeb do

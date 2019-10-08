@@ -8,7 +8,9 @@ import {
 import { ThunkAction } from "redux-thunk";
 import createRootReducer, { RootState } from "./reducers";
 
-export const history = createBrowserHistory();
+export const history = createBrowserHistory({
+  basename: "/fe"
+});
 const rootReducer = createRootReducer(history);
 
 const middleware = [...getDefaultMiddleware(), routerMiddleware(history)];
