@@ -1,7 +1,8 @@
 // https://iamturns.com/typescript-babel/
 import React, { useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setUsers, addUser, fetchUsers } from "./usersSlice";
+import { setUsers, addUser, fetchUsers, goToUsersThunk } from "./usersSlice";
+import { push } from "connected-react-router";
 
 import { RootState } from "../../reducers";
 
@@ -17,6 +18,14 @@ export const Users = () => {
 
   const fetchUsersC = useCallback(() => {
     dispatch(fetchUsers());
+  }, [dispatch]);
+
+  const goToUsers = useCallback(() => {
+    dispatch(push("/users"));
+  }, [dispatch]);
+
+  const goToUsersViaThunk = useCallback(() => {
+    dispatch(goToUsersThunk());
   }, [dispatch]);
 
   const isLoading = useSelector((state: RootState) => state.users.isLoading);
@@ -46,6 +55,14 @@ export const Users = () => {
         <br />
         Users:
         <pre>{JSON.stringify(users)}</pre>
+      </div>
+      <div className="mt-4">
+        <button onClick={goToUsers} className="btn btn-primary">
+          Push client side url using dispatch
+        </button>
+        <button onClick={goToUsersViaThunk} className="btn btn-gray">
+          Push client side url using Thunk
+        </button>
       </div>
     </div>
   );

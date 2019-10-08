@@ -1,6 +1,9 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+//import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { ConnectedRouter } from "connected-react-router";
+import { Switch, Route, Link } from "react-router-dom";
 import TestPage from "../pages/TestPage";
+import { history } from "../store";
 
 function Home() {
   return <h2>Home</h2>;
@@ -17,7 +20,7 @@ function Users() {
 export default function App() {
   const linkClass = "underline text-blue-600";
   return (
-    <Router>
+    <ConnectedRouter history={history}>
       <div>
         <nav>
           <Link to="/" className={linkClass}>
@@ -51,6 +54,6 @@ export default function App() {
           </Route>
         </Switch>
       </div>
-    </Router>
+    </ConnectedRouter>
   );
 }

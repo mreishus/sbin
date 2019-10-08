@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "redux-starter-kit";
 import { getUsers } from "../../api/users";
 import { AppThunk } from "../../store";
+import { push } from "connected-react-router";
 
 interface UsersState {
   users: Array<any>;
@@ -64,4 +65,8 @@ export const fetchUsers = (): AppThunk => async dispatch => {
   } catch (err) {
     dispatch(getUsersFailure(err.toString()));
   }
+};
+
+export const goToUsersThunk = (): AppThunk => async dispatch => {
+  dispatch(push("/users"));
 };

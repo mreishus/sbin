@@ -1,9 +1,21 @@
-import { configureStore, Action } from "redux-starter-kit";
+import { createBrowserHistory } from "history";
+import { routerMiddleware } from "connected-react-router";
+import {
+  configureStore,
+  Action,
+  getDefaultMiddleware
+} from "redux-starter-kit";
 import { ThunkAction } from "redux-thunk";
-import rootReducer, { RootState } from "./reducers";
+import createRootReducer, { RootState } from "./reducers";
+
+export const history = createBrowserHistory();
+const rootReducer = createRootReducer(history);
+
+const middleware = [...getDefaultMiddleware(), routerMiddleware(history)];
 
 const store = configureStore({
-  reducer: rootReducer
+  reducer: rootReducer,
+  middleware
 });
 
 /* Hot reload support - This doesn't work because phoenix
