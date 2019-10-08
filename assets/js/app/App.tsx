@@ -1,31 +1,56 @@
-import React, { Component } from "react";
-//import PropTypes from "prop-types";
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import TestPage from "../pages/TestPage";
 
-import Footer from "../features/filters/Footer";
-import AddTodo from "../features/todos/AddTodo";
-import VisibleTodoList from "../features/todos/VisibleTodoList";
-import Users from "../features/users/Users";
-
-class ReactApp extends Component {
-  render() {
-    return (
-      <div>
-        This is a react app
-        <div className="alert alert-info mb-4">Testing</div>
-        <div className="p-4 bg-teal-100">
-          Users
-          <Users />
-        </div>
-        <div className="p-4 bg-red-100">
-          <div className="text-xl mb-4">Todo example, react starter kit</div>
-          <AddTodo />
-          {/* 
-          // @ts-ignore Something about react-redux connect(). */}
-          <VisibleTodoList />
-          <Footer />
-        </div>
-      </div>
-    );
-  }
+function Home() {
+  return <h2>Home</h2>;
 }
-export default ReactApp;
+
+function About() {
+  return <h2>About</h2>;
+}
+
+function Users() {
+  return <h2>Users</h2>;
+}
+
+export default function App() {
+  const linkClass = "underline text-blue-600";
+  return (
+    <Router>
+      <div>
+        <nav>
+          <Link to="/" className={linkClass}>
+            Home
+          </Link>{" "}
+          <Link to="/about" className={linkClass}>
+            About
+          </Link>{" "}
+          <Link to="/users" className={linkClass}>
+            Users
+          </Link>{" "}
+          <Link to="/test_page" className={linkClass}>
+            Test Page
+          </Link>
+        </nav>
+
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <Switch>
+          <Route path="/test_page">
+            <TestPage />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/users">
+            <Users />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
+}

@@ -1,6 +1,5 @@
 // https://iamturns.com/typescript-babel/
 import React, { useCallback } from "react";
-import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import { setUsers, addUser, fetchUsers } from "./usersSlice";
 
