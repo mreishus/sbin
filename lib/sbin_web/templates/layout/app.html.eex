@@ -9,7 +9,20 @@
   </head>
   <body class="antialiased text-gray-900">
     <header class="bg-orange-200 p-2 rounded">
-      Header
+      Header 1
+
+
+      <%= if Pow.Plug.current_user(@conn) do %>
+        <span><%= link "Sign out", to: Routes.pow_session_path(@conn, :delete), 
+      method: :delete, class: 'text-blue-600 underline' %></span>
+      <% else %>
+        <span><%= link "Register", to: Routes.pow_registration_path(@conn, :new),
+      class: 'text-blue-600 underline'%></span>
+        <span><%= link "Sign in", to: Routes.pow_session_path(@conn, :new),
+      class: 'text-blue-600 underline'%></span>
+      <% end %>
+
+
     </header>
     <main role="main" class="container mx-auto">
       <%= if get_flash(@conn, :info) != nil do %>
