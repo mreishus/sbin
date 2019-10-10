@@ -12,6 +12,9 @@ defmodule SbinWeb.NoteController do
   end
 
   def create(conn, %{"note" => note_params}) do
+    today_plus_one_month = DateTime.utc_now() |> DateTime.add(86_400 * 30, :second)
+    note_params = note_params |> Map.put("expire", today_plus_one_month)
+
     with {:ok, %Note{} = note} <- Notes.create_note(note_params) do
       conn
       |> put_status(:created)

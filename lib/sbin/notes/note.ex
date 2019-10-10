@@ -5,7 +5,7 @@ defmodule Sbin.Notes.Note do
 
   Possible idea for shorter urls:
 
-  Encode: 
+  Encode:
 
   iex(19)> id1 = a.id
   "84b473f9-3dc1-4155-aa0c-2316c4fa2b90"
@@ -17,11 +17,11 @@ defmodule Sbin.Notes.Note do
   iex(22)> id4 = id3 |> Base.encode64()
   "hLRz+T3BQVWqDCMWxPorkA=="
 
-  Decode 
+  Decode
 
   iex(22)> id4 = id3 |> Base.encode64()
   "hLRz+T3BQVWqDCMWxPorkA=="
-  iex(23)> {:ok, id5} = id4 |> Base.decode64()   
+  iex(23)> {:ok, id5} = id4 |> Base.decode64()
   {:ok,
   <<132, 180, 115, 249, 61, 193, 65, 85, 170, 12, 35, 22, 196, 250, 43, 144>>}
   iex(24)> id6 = id5 |> Base.encode16()

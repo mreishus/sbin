@@ -4,7 +4,8 @@ import { Switch, Route, Link } from "react-router-dom";
 import TestPage from "../pages/TestPage";
 import { history } from "../store";
 
-import NotePage from "../pages/NotePage";
+import NoteIndex from "../pages/NoteIndex";
+import NoteShow from "../pages/NoteShow";
 
 function Home() {
   return <h2>Home??</h2>;
@@ -28,7 +29,10 @@ export default function App() {
           </Link>{" "}
           <Link to="/test_page" className={linkClass}>
             Test Page
-          </Link>
+          </Link>{" "}
+          <Link to="/note" className={linkClass}>
+            Note Index
+          </Link>{" "}
           <Link
             to="/note/2223ad00-5ab2-4e57-815d-11ce06b9d17f"
             className={linkClass}
@@ -46,7 +50,8 @@ export default function App() {
           <Route path="/about">
             <About />
           </Route>
-          <Route path="/note/:id" component={NotePage} />
+          <Route path="/note/:id" component={NoteShow} />
+          <Route path="/note" component={NoteIndex} />
           <Route path="/">
             <Home />
           </Route>
