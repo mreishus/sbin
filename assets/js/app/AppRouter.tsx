@@ -15,9 +15,7 @@ export const AppRouter = (props: Props) => {
       </Route>
       <Route path="/note/:id" component={NoteShow} />
       <Route path="/note" component={NoteIndex} />
-      <Route path="/">
-        <div>Home?</div>
-      </Route>
+      <Route path="/" component={NoteIndex} />
     </Switch>
   );
 };

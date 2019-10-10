@@ -9,8 +9,10 @@ export default function App() {
   const linkClass = "underline text-blue-600";
   return (
     <ConnectedRouter history={history}>
-      <div className="appy">
-        <nav>
+      <div className="">
+        <nav className="bg-gray-800 text-gray-200 font-thin p-2">
+          sbin [online paste bin]
+          {/*
           <Link to="/" className={linkClass}>
             Home
           </Link>{" "}
@@ -26,6 +28,7 @@ export default function App() {
           >
             Show Note
           </Link>
+            */}
         </nav>
 
         <AppRouter />

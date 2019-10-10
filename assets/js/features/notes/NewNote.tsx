@@ -39,12 +39,24 @@ export const NewNote = (props: Props) => {
 
   return (
     <div className="container mx-auto m-10">
-      New Note
       <form action="POST" onSubmit={handleSubmit}>
         <fieldset disabled={isLoading} aria-busy={isLoading}>
+          <label htmlFor="content">
+            <h1 className="text-3xl text-green-200">New Paste</h1>
+            <textarea
+              className="border block form-control mt-2 w-full mx-auto font-mono text-lg"
+              onChange={handleInputChange}
+              value={inputs.content}
+              id="content"
+              name="content"
+              rows={12}
+            />
+          </label>
+
           <label htmlFor="title">
+            <h2 className="mt-4 text-green-200">Optional Title</h2>
             <input
-              className="border block"
+              className="border block form-control mt-2 w-1/2 font-mono"
               type="text"
               id="title"
               name="title"
@@ -53,19 +65,12 @@ export const NewNote = (props: Props) => {
             />
           </label>
 
-          <label htmlFor="content">
-            <textarea
-              onChange={handleInputChange}
-              value={inputs.content}
-              id="content"
-              name="content"
-              cols={30}
-              rows={10}
-              className="border block"
-            />
-          </label>
-
-          <button type="submit">Submit</button>
+          <button
+            type="submit"
+            className="border border-green-400 rounded px-4 py-2 mt-4 bg-green-600 font-semibold"
+          >
+            Create New Paste
+          </button>
           {isError && (
             <div className="alert alert-danger max-w-lg">{errorMessage}</div>
           )}

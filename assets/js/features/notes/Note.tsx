@@ -42,11 +42,14 @@ export const Note = ({ id }: Props) => {
     return <div>Error.</div>;
   } else if (isLoading) {
     return <div>Loading...</div>;
+  } else if (data == null || data.data == null) {
+    return <div>Data is null</div>;
   }
+  const note = data.data;
   return (
-    <div>
-      Note Here: Id {id}
-      <pre>{JSON.stringify(data)}</pre>
+    <div className="container mx-auto m-10">
+      <h1 className="text-3xl text-green-200">View Paste</h1>
+      <pre className="font-mono form-control mt-4">{note.content}</pre>
     </div>
   );
 };
