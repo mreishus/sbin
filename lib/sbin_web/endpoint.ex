@@ -13,7 +13,7 @@ defmodule SbinWeb.Endpoint do
     at: "/",
     from: :sbin,
     gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+    only: ~w(css fonts images js favicon.ico robots.txt font-css)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

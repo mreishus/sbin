@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Sbin</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+    <link rel="stylesheet" href="font-css/stylesheet.css" type="text/css" charset="utf-8" />
   </head>
   <body class="antialiased text-gray-900">
     <header class="bg-orange-200 p-2 rounded">

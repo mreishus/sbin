@@ -52,7 +52,6 @@ export const NewNote = (props: Props) => {
               rows={12}
             />
           </label>
-
           <label htmlFor="title">
             <h2 className="mt-4 text-green-200">Optional Title</h2>
             <input
@@ -64,6 +63,17 @@ export const NewNote = (props: Props) => {
               value={inputs.title || ""}
             />
           </label>
+
+          <div className="text-green-200 mt-4">
+            Expiration:{" "}
+            <span className="ml-2 font-ibm text-teal-200">One month</span>
+          </div>
+          <div className="text-green-200 mt-1">
+            Discoverability:{" "}
+            <span className="ml-2 font-ibm text-teal-200">
+              Unlisted, but public
+            </span>
+          </div>
 
           <button
             type="submit"

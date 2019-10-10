@@ -12,3 +12,11 @@
 @import "tailwindcss/utilities";
 @import "./custom-utilities.css";
 
+@font-face {
+    font-family: 'pxplus_ibm_vga9regular';
+    src: url('/font-css/pxplus_ibm_vga9-webfont.woff2') format('woff2'),
+         url('/font-css/pxplus_ibm_vga9-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.font-ibm { font-family: 'pxplus_ibm_vga9regular', Arial, sans-serif; }
