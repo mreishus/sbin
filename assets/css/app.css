@@ -20,3 +20,6 @@
     font-style: normal;
 }
 .font-ibm { font-family: 'pxplus_ibm_vga9regular', Arial, sans-serif; }
+
+/* Workaround for SyntaxHighlighter */
+pre.whitespace-pre-wrap>code { white-space: pre-wrap !important; }

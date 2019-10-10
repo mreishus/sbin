@@ -6,7 +6,6 @@ import { history } from "../store";
 import AppRouter from "./AppRouter";
 
 export default function App() {
-  const linkClass = "underline text-blue-600";
   return (
     <ConnectedRouter history={history}>
       <div className="">

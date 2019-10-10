@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import { PrismAsync as SyntaxHighlighter } from "react-syntax-highlighter";
+import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
+
 interface Props {
   id: string;
 }
@@ -49,7 +52,15 @@ export const Note = ({ id }: Props) => {
   return (
     <div className="container mx-auto m-10">
       <h1 className="text-3xl text-green-200">View Paste</h1>
-      <pre className="font-mono form-control mt-4">{note.content}</pre>
+      <SyntaxHighlighter
+        language="javascript"
+        style={tomorrow}
+        wrapLines={true}
+        className={"whitespace-pre-wrap rounded-lg mt-2"}
+        customStyle={{ whiteSpace: "pre-wrap" }}
+      >
+        {note.content}
+      </SyntaxHighlighter>
     </div>
   );
 };
