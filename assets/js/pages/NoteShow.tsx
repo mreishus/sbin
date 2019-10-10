@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
-import classnames from "classnames";
+import React from "react";
 import Note from "../features/notes/Note";
 import { RouteComponentProps } from "react-router-dom";
 

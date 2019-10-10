@@ -1,16 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
-import classnames from "classnames";
+import React from "react";
 import NewNote from "../features/notes/NewNote";
-import { RouteComponentProps } from "react-router-dom";
 
-type TParams = { id: string };
-interface Props extends RouteComponentProps<TParams> {}
-
-export const NoteIndex = ({ match }: Props) => {
-  const {
-    params: { id }
-  } = match;
-
+export const NoteIndex = () => {
   return (
     <div>
       Note Index

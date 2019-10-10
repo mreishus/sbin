@@ -1,38 +1,13 @@
-import React, { useState, useContext, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { push } from "connected-react-router";
 
-const useForm = (submitCallback: () => void) => {
-  let initialState: Record<string, string> = {};
-  const [inputs, setInputs] = useState(initialState);
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    if (event) {
-      event.preventDefault();
-    }
-    submitCallback();
-  };
-
-  const handleInputChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    event.persist();
-    setInputs(inputs => ({
-      ...inputs,
-      [event.target.name]: event.target.value
-    }));
-  };
-  return {
-    handleSubmit,
-    handleInputChange,
-    inputs
-  };
-};
+import useForm from "../../hooks/useForm";
 
 interface Props {}
 
-export const NewNote = ({  }: Props) => {
+export const NewNote = (props: Props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
