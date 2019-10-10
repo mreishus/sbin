@@ -1,31 +1,18 @@
 import React from "react";
 import { ConnectedRouter } from "connected-react-router";
-import { Switch, Route, Link } from "react-router-dom";
-import TestPage from "../pages/TestPage";
+import { Link } from "react-router-dom";
 import { history } from "../store";
 
-import NoteIndex from "../pages/NoteIndex";
-import NoteShow from "../pages/NoteShow";
-
-function Home() {
-  return <h2>Home??</h2>;
-}
-
-function About() {
-  return <h2>About</h2>;
-}
+import AppRouter from "./AppRouter";
 
 export default function App() {
   const linkClass = "underline text-blue-600";
   return (
     <ConnectedRouter history={history}>
-      <div>
+      <div className="appy">
         <nav>
           <Link to="/" className={linkClass}>
             Home
-          </Link>{" "}
-          <Link to="/about" className={linkClass}>
-            About
           </Link>{" "}
           <Link to="/test_page" className={linkClass}>
             Test Page
@@ -41,21 +28,7 @@ export default function App() {
           </Link>
         </nav>
 
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/test_page">
-            <TestPage />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/note/:id" component={NoteShow} />
-          <Route path="/note" component={NoteIndex} />
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
+        <AppRouter />
       </div>
     </ConnectedRouter>
   );
