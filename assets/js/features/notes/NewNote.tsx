@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { push } from "connected-react-router";
@@ -21,7 +21,16 @@ export const NewNote = (props: Props) => {
     label: "text"
   });
 
+  const textAreaRef = useRef(null);
+  useEffect(() => {
+    if (textAreaRef != null && textAreaRef.current != null) {
+      // @ts-ignore: Object is possibly 'null'.
+      textAreaRef.current.focus();
+    }
+  }, []);
+
   const dispatch = useDispatch();
+
   const goToNote = useCallback(
     noteId => {
       console.log("redirect to noteId [" + noteId + "]");
@@ -62,6 +71,7 @@ export const NewNote = (props: Props) => {
           <label htmlFor="content">
             <h1 className="text-3xl text-green-200">new paste</h1>
             <textarea
+              ref={textAreaRef}
               className="border block form-control mt-2 w-full mx-auto font-mono text-lg"
               onChange={handleInputChange}
               value={inputs.content}
@@ -70,47 +80,49 @@ export const NewNote = (props: Props) => {
               rows={12}
             />
           </label>
-          <table className="text-green-200 w-1/2 mt-4">
-            <tr>
-              <td className="py-1 pr-2">optional title</td>
-              <td className="py-1 ">
-                <input
-                  className="border block form-control mt-2 w-full font-mono"
-                  type="text"
-                  id="title"
-                  name="title"
-                  onChange={handleInputChange}
-                  value={inputs.title || ""}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td className="py-1 pr-2">syntax highlighting</td>
-              <td className="py-1">
-                <Select
-                  theme={selectTheme}
-                  options={syntaxOptions}
-                  value={syntaxValue}
-                  onChange={handleSelectInputChange}
-                  isClearable
-                  menuPlacement="top"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td className="py-1 pr-2">expiration</td>
-              <td className="py-1">
-                <span className="ml-2 font-ibm text-teal-200">One month</span>
-              </td>
-            </tr>
-            <tr>
-              <td className="py-1 pr-2">discoverability</td>
-              <td className="py-1">
-                <span className="ml-2 font-ibm text-teal-200">
-                  Unlisted, but public
-                </span>
-              </td>
-            </tr>
+          <table className="text-green-200 w-full md:w-3/4 lg:w-1/2 mt-4">
+            <tbody>
+              <tr>
+                <td className="py-1 pr-2">optional title</td>
+                <td className="py-1 ">
+                  <input
+                    className="border block form-control mt-2 w-full font-mono"
+                    type="text"
+                    id="title"
+                    name="title"
+                    onChange={handleInputChange}
+                    value={inputs.title || ""}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td className="py-1 pr-2">syntax highlighting</td>
+                <td className="py-1">
+                  <Select
+                    theme={selectTheme}
+                    options={syntaxOptions}
+                    value={syntaxValue}
+                    onChange={handleSelectInputChange}
+                    isClearable
+                    menuPlacement="top"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td className="py-1 pr-2">expiration</td>
+                <td className="py-1">
+                  <span className="ml-2 font-ibm text-teal-200">One month</span>
+                </td>
+              </tr>
+              <tr>
+                <td className="py-1 pr-2">discoverability</td>
+                <td className="py-1">
+                  <span className="ml-2 font-ibm text-teal-200">
+                    Unlisted, but public
+                  </span>
+                </td>
+              </tr>
+            </tbody>
           </table>
 
           <button
