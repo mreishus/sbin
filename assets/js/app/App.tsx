@@ -10,9 +10,12 @@ export default function App() {
     <ConnectedRouter history={history}>
       <div className="">
         <nav className="bg-gray-800 text-teal-200 p-2 font-ibm text-base">
-          <Link to="/">sbin</Link> <span className="text-teal-600">[</span>
-          <span className="text-teal-400">online paste bin</span>
-          <span className="text-teal-600">]</span>{" "}
+          <Link to="/">
+            sbin <span className="text-teal-600">[</span>
+            <span className="text-green-400">encrypted </span>
+            <span className="text-teal-400">online paste bin</span>
+            <span className="text-teal-600">]</span>{" "}
+          </Link>
           <Link to="/">
             <span className="text-green-300 bg-green-800 px-2 py-1 rounded-lg ml-4">
               <span className="text-green-100">+n</span>ew{" "}

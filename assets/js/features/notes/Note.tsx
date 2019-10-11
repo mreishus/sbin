@@ -34,7 +34,7 @@ const useDataApi = (initialUrl: string, initialData: any) => {
 
 export const Note = ({ id }: Props) => {
   const [decryptedContent, setDecryptedContent] = useState("Decrypting..");
-  const [decryptedTitle, setDecryptedTitle] = useState("Decrypting..");
+  const [decryptedTitle, setDecryptedTitle] = useState("");
   const { data, isLoading, isError, doFetch } = useDataApi(
     `/api/notes/${id}`,
     null
@@ -48,9 +48,11 @@ export const Note = ({ id }: Props) => {
     async function decode(content: string, title: string, salt: string) {
       const key = await keyFromPasswordSalt("helloHardcodedPass", salt);
       const dc_c = decrypt(content, key);
-      const dc_t = decrypt(title, key);
       setDecryptedContent(dc_c);
-      setDecryptedTitle(dc_t);
+      if (title != null && title.length > 0) {
+        const dc_t = decrypt(title, key);
+        setDecryptedTitle(dc_t);
+      }
     }
     if (data == null || data.data == null) {
       return;

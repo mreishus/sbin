@@ -55,6 +55,9 @@ export const NewNote = (props: Props) => {
       const hardcodedPassword = "helloHardcodedPass";
       const { key, salt } = await keyFromPassword(hardcodedPassword);
       const encryptedContentB64 = encrypt(inputs.content, key);
+      if (inputs.title == null) {
+        inputs.title = "";
+      }
       const encryptedTitleB64 = encrypt(inputs.title, key);
 
       const note = {
