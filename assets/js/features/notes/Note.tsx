@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import axios from "axios";
+import useClipboard from "react-use-clipboard";
 
 import { PrismAsync as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -37,6 +38,9 @@ const useDataApi = (initialUrl: string, initialData: any) => {
 const getCurrentUrlNoQuery = () => window.location.href.split("?")[0];
 
 export const Note = ({ id, password, isNew }: Props) => {
+  const [isCopied, setCopied] = useClipboard(getCurrentUrlNoQuery(), {
+    successDuration: 10000
+  });
   const [decryptedContent, setDecryptedContent] = useState("Decrypting..");
   const [decryptedTitle, setDecryptedTitle] = useState("");
   const { data, isLoading, isError, doFetch } = useDataApi(
@@ -68,8 +72,10 @@ export const Note = ({ id, password, isNew }: Props) => {
 
   // Autofocus effect
   const urlRef = useCallback(node => {
-    node.focus();
-    node.select();
+    if (node != null) {
+      node.focus();
+      node.select();
+    }
   }, []);
 
   if (isError) {
@@ -84,8 +90,8 @@ export const Note = ({ id, password, isNew }: Props) => {
   return (
     <div className="container mx-auto m-4 px-2">
       {isNew && (
-        <div className="border border-green-600 rounded w-1/2 p-2 mx-auto bg-green-800 shadow-lg">
-          Success!
+        <div className="border border-green-600 rounded w-3/4 lg:w-1/2 p-2 mx-auto bg-green-800 shadow-lg">
+          ✅ Your paste has been posted.
           <input
             ref={urlRef}
             readOnly
@@ -93,9 +99,15 @@ export const Note = ({ id, password, isNew }: Props) => {
             type="text"
             value={getCurrentUrlNoQuery()}
           />
+          <button
+            onClick={setCopied}
+            className="border border-green-400 p-2 bg-green-600 shadow rounded mt-2"
+          >
+            {isCopied ? "Copied!" : "Copy URL to clipboard"}
+          </button>
         </div>
       )}
-      <h1 className="text-3xl text-green-200">View Paste</h1>
+      <h1 className="text-3xl text-green-200 mt-4">View Paste</h1>
       {decryptedTitle}
       <SyntaxHighlighter
         language={note.syntax || "text"}

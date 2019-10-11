@@ -144,7 +144,7 @@ export const NewNote = (props: Props) => {
                 <td className="py-1 pr-2">discoverability</td>
                 <td className="py-1">
                   <span className="ml-2 font-ibm text-teal-200">
-                    Unlisted, but public
+                    Unlisted, but public to anyone with the URL
                   </span>
                 </td>
               </tr>
