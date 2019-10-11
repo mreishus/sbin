@@ -11,6 +11,12 @@ defmodule SbinWeb.NoteView do
   end
 
   def render("note.json", %{note: note}) do
-    %{id: note.id, title: note.title, content: note.content, expire: note.expire}
+    %{
+      id: note.id,
+      title: note.title,
+      content: note.content,
+      expire: note.expire,
+      syntax: note.syntax
+    }
   end
 end

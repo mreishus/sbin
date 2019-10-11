@@ -57,6 +57,6 @@ defmodule Sbin.Notes.Note do
   def changeset(note, attrs) do
     note
     |> cast(attrs, [:title, :content, :expire, :syntax])
-    |> validate_required([:title, :content, :expire])
+    |> validate_required([:content, :expire])
   end
 end

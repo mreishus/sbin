@@ -53,7 +53,7 @@ export const Note = ({ id }: Props) => {
     <div className="container mx-auto m-10">
       <h1 className="text-3xl text-green-200">View Paste</h1>
       <SyntaxHighlighter
-        language="javascript"
+        language={note.syntax || "text"}
         style={tomorrow}
         wrapLines={true}
         className={"whitespace-pre-wrap rounded-lg mt-2"}
