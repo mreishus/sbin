@@ -15,8 +15,9 @@ export default function App() {
           <span className="text-teal-600">]</span>{" "}
           <Link to="/">
             <span className="text-green-300 bg-green-800 px-2 py-1 rounded-lg ml-4">
-              <span className="text-green-100">n</span>ew{" "}
+              <span className="text-green-100">+n</span>ew{" "}
               <span className="text-green-100">p</span>aste
+              <span className="text-green-200">!</span>
             </span>
           </Link>
           {/*
