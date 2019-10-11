@@ -27,7 +27,7 @@ import base64js from "base64-js";
 
 // Given a password, make a random salt and a key.
 const keyFromPassword = async (password: string) => {
-  const salt = makeRandomSalt(15);
+  const salt = makeRandomString(15);
   const derivedKey = await keyFromPasswordSalt(password, salt);
   return { key: derivedKey, salt: salt };
 };
@@ -60,7 +60,7 @@ const decrypt = (message: string, key: Buffer) => {
   return decryptedText;
 };
 
-const makeRandomSalt = (len: number) => {
+const makeRandomString = (len: number) => {
   const byteArray = new Uint8Array(len);
   window.crypto.getRandomValues(byteArray);
   return base64js.fromByteArray(byteArray);
@@ -71,5 +71,5 @@ export {
   keyFromPasswordSalt,
   encrypt,
   decrypt,
-  makeRandomSalt
+  makeRandomString
 };

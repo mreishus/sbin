@@ -10,9 +10,12 @@ import Select from "react-select";
 import syntaxOptions from "./syntaxOptions";
 import selectTheme from "./selectTheme";
 
-import { keyFromPassword, encrypt } from "../../crypto";
+import { keyFromPassword, encrypt, makeRandomString } from "../../crypto";
 
 interface Props {}
+
+// Can't use slashes in password due to react-router
+const makePassword = () => makeRandomString(15).replace("/", "s");
 
 export const NewNote = (props: Props) => {
   // State: loading and error flags, error message, syntax dropdown
@@ -41,9 +44,8 @@ export const NewNote = (props: Props) => {
   // Use redux to redirect user after saving
   const dispatch = useDispatch();
   const goToNote = useCallback(
-    noteId => {
-      console.log("redirect to noteId [" + noteId + "]");
-      dispatch(push("/note/" + noteId));
+    (noteId, password) => {
+      dispatch(push(`/note/${noteId}/${password}`));
     },
     [dispatch]
   );
@@ -52,8 +54,8 @@ export const NewNote = (props: Props) => {
   const { inputs, handleSubmit, handleInputChange } = useForm(async () => {
     try {
       // Build Encrypted Data
-      const hardcodedPassword = "helloHardcodedPass";
-      const { key, salt } = await keyFromPassword(hardcodedPassword);
+      const password = makePassword();
+      const { key, salt } = await keyFromPassword(password);
       const encryptedContentB64 = encrypt(inputs.content, key);
       if (inputs.title == null) {
         inputs.title = "";
@@ -80,7 +82,7 @@ export const NewNote = (props: Props) => {
       const res = await axios.post("/api/notes", data);
       setIsLoading(false);
       const id = res.data.data.id;
-      goToNote(id);
+      goToNote(id, password);
     } catch (e) {
       setIsLoading(false);
       setIsError(true);

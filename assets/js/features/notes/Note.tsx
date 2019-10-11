@@ -8,6 +8,7 @@ import { keyFromPasswordSalt, decrypt } from "../../crypto";
 
 interface Props {
   id: string;
+  password: string;
 }
 
 const useDataApi = (initialUrl: string, initialData: any) => {
@@ -32,7 +33,7 @@ const useDataApi = (initialUrl: string, initialData: any) => {
   return { data, isLoading, isError, doFetch: setUrl };
 };
 
-export const Note = ({ id }: Props) => {
+export const Note = ({ id, password }: Props) => {
   const [decryptedContent, setDecryptedContent] = useState("Decrypting..");
   const [decryptedTitle, setDecryptedTitle] = useState("");
   const { data, isLoading, isError, doFetch } = useDataApi(
@@ -46,7 +47,7 @@ export const Note = ({ id }: Props) => {
 
   useEffect(() => {
     async function decode(content: string, title: string, salt: string) {
-      const key = await keyFromPasswordSalt("helloHardcodedPass", salt);
+      const key = await keyFromPasswordSalt(password, salt);
       const dc_c = decrypt(content, key);
       setDecryptedContent(dc_c);
       if (title != null && title.length > 0) {
@@ -60,7 +61,7 @@ export const Note = ({ id }: Props) => {
     const { data: note } = data;
     const { content, title, salt } = note;
     decode(content, title, salt);
-  }, [data]);
+  }, [data, password]);
 
   if (isError) {
     return <div>Error.</div>;
@@ -78,7 +79,7 @@ export const Note = ({ id }: Props) => {
         language={note.syntax || "text"}
         style={tomorrow}
         wrapLines={true}
-        className={"whitespace-pre-wrap rounded-lg mt-2"}
+        className={"whitespace-pre-wrap rounded-lg mt-2 text-base"}
         customStyle={{ whiteSpace: "pre-wrap" }}
       >
         {decryptedContent}

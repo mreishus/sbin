@@ -13,7 +13,7 @@ export const AppRouter = (props: Props) => {
       <Route path="/test_page">
         <TestPage />
       </Route>
-      <Route path="/note/:id" component={NoteShow} />
+      <Route path="/note/:id/:password" component={NoteShow} />
       <Route path="/note" component={NoteIndex} />
       <Route path="/" component={NoteIndex} />
     </Switch>
