@@ -4,6 +4,8 @@ import axios from "axios";
 import { PrismAsync as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
 
+import { keyFromPasswordSalt, decrypt } from "../../crypto";
+
 interface Props {
   id: string;
 }
@@ -33,13 +35,29 @@ const useDataApi = (initialUrl: string, initialData: any) => {
 //const result = await axios("/api/notes/" + id);
 
 export const Note = ({ id }: Props) => {
+  const [decryptedContent, setDecryptedContent] = useState("Decrypting..");
   const { data, isLoading, isError, doFetch } = useDataApi(
     `/api/notes/${id}`,
     null
   );
+
   useEffect(() => {
     doFetch(`/api/notes/${id}`);
   }, [doFetch, id]);
+
+  useEffect(() => {
+    async function decode(content: string, salt: string) {
+      const key = await keyFromPasswordSalt("helloHardcodedPass", salt);
+      const dc = decrypt(content, key);
+      setDecryptedContent(dc);
+    }
+    if (data == null || data.data == null) {
+      return;
+    }
+    const { data: note } = data;
+    const { content, salt } = note;
+    decode(content, salt);
+  }, [data]);
 
   if (isError) {
     return <div>Error.</div>;
@@ -59,7 +77,10 @@ export const Note = ({ id }: Props) => {
         className={"whitespace-pre-wrap rounded-lg mt-2"}
         customStyle={{ whiteSpace: "pre-wrap" }}
       >
+        {decryptedContent}
+        {/*
         {note.content}
+          */}
       </SyntaxHighlighter>
     </div>
   );

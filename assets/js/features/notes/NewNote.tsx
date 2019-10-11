@@ -10,9 +10,12 @@ import Select from "react-select";
 import syntaxOptions from "./syntaxOptions";
 import selectTheme from "./selectTheme";
 
+import { keyFromPassword, encrypt } from "../../crypto";
+
 interface Props {}
 
 export const NewNote = (props: Props) => {
+  // State: loading and error flags, error message, syntax dropdown
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -21,6 +24,12 @@ export const NewNote = (props: Props) => {
     label: "text"
   });
 
+  // Handle dropdown changes
+  const handleSelectInputChange = (val: any) => {
+    setSyntaxValue(val);
+  };
+
+  // Autofocus effect
   const textAreaRef = useRef(null);
   useEffect(() => {
     if (textAreaRef != null && textAreaRef.current != null) {
@@ -29,8 +38,8 @@ export const NewNote = (props: Props) => {
     }
   }, []);
 
+  // Use redux to redirect user after saving
   const dispatch = useDispatch();
-
   const goToNote = useCallback(
     noteId => {
       console.log("redirect to noteId [" + noteId + "]");
@@ -39,11 +48,25 @@ export const NewNote = (props: Props) => {
     [dispatch]
   );
 
+  // Form state, form handler, and onsubmit function
   const { inputs, handleSubmit, handleInputChange } = useForm(async () => {
     try {
+      // Build Encrypted Data
+      const hardcodedPassword = "helloHardcodedPass";
+      const { key, salt } = await keyFromPassword(hardcodedPassword);
+      const encryptedContentB64 = encrypt(inputs.content, key);
+
+      const note = {
+        ...inputs,
+        salt: salt,
+        content: encryptedContentB64
+      };
+
       setIsLoading(true);
       setIsError(false);
-      const data = { note: inputs };
+      const data = {
+        note
+      };
       // @ts-ignore: Object is possibly 'null'.
       if (syntaxValue != null && syntaxValue.value != null) {
         // @ts-ignore: Object is possibly 'null'.
@@ -59,10 +82,6 @@ export const NewNote = (props: Props) => {
       setErrorMessage(e.message);
     }
   });
-
-  const handleSelectInputChange = (val: any) => {
-    setSyntaxValue(val);
-  };
 
   return (
     <div className="container mx-auto m-4 px-2">
