@@ -9,7 +9,7 @@ import { ThunkAction } from "redux-thunk";
 import createRootReducer, { RootState } from "./reducers";
 
 export const history = createBrowserHistory({
-  basename: "/fe"
+  basename: "/f"
 });
 const rootReducer = createRootReducer(history);
 
