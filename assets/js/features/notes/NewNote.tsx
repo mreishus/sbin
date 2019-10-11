@@ -65,7 +65,7 @@ export const NewNote = (props: Props) => {
   };
 
   return (
-    <div className="container mx-auto m-10">
+    <div className="container mx-auto m-4 px-2">
       <form action="POST" onSubmit={handleSubmit}>
         <fieldset disabled={isLoading} aria-busy={isLoading}>
           <label htmlFor="content">

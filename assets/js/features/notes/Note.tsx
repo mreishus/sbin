@@ -50,7 +50,7 @@ export const Note = ({ id }: Props) => {
   }
   const note = data.data;
   return (
-    <div className="container mx-auto m-10">
+    <div className="container mx-auto m-4 px-2">
       <h1 className="text-3xl text-green-200">View Paste</h1>
       <SyntaxHighlighter
         language={note.syntax || "text"}
