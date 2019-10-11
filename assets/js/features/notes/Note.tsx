@@ -34,6 +34,7 @@ const useDataApi = (initialUrl: string, initialData: any) => {
 
 export const Note = ({ id }: Props) => {
   const [decryptedContent, setDecryptedContent] = useState("Decrypting..");
+  const [decryptedTitle, setDecryptedTitle] = useState("Decrypting..");
   const { data, isLoading, isError, doFetch } = useDataApi(
     `/api/notes/${id}`,
     null
@@ -44,17 +45,19 @@ export const Note = ({ id }: Props) => {
   }, [doFetch, id]);
 
   useEffect(() => {
-    async function decode(content: string, salt: string) {
+    async function decode(content: string, title: string, salt: string) {
       const key = await keyFromPasswordSalt("helloHardcodedPass", salt);
-      const dc = decrypt(content, key);
-      setDecryptedContent(dc);
+      const dc_c = decrypt(content, key);
+      const dc_t = decrypt(title, key);
+      setDecryptedContent(dc_c);
+      setDecryptedTitle(dc_t);
     }
     if (data == null || data.data == null) {
       return;
     }
     const { data: note } = data;
-    const { content, salt } = note;
-    decode(content, salt);
+    const { content, title, salt } = note;
+    decode(content, title, salt);
   }, [data]);
 
   if (isError) {
@@ -68,6 +71,7 @@ export const Note = ({ id }: Props) => {
   return (
     <div className="container mx-auto m-4 px-2">
       <h1 className="text-3xl text-green-200">View Paste</h1>
+      {decryptedTitle}
       <SyntaxHighlighter
         language={note.syntax || "text"}
         style={tomorrow}
