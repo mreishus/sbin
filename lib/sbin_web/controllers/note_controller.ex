@@ -13,7 +13,12 @@ defmodule SbinWeb.NoteController do
 
   def create(conn, %{"note" => note_params}) do
     today_plus_one_month = DateTime.utc_now() |> DateTime.add(86_400 * 30, :second)
-    note_params = note_params |> Map.put("expire", today_plus_one_month)
+    shortcode = :crypto.strong_rand_bytes(6) |> Base.url_encode64()
+
+    note_params =
+      note_params
+      |> Map.put("expire", today_plus_one_month)
+      |> Map.put("shortcode", shortcode)
 
     with {:ok, %Note{} = note} <- Notes.create_note(note_params) do
       conn
