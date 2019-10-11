@@ -37,6 +37,8 @@ defmodule Sbin.Notes do
   """
   def get_note!(id), do: Repo.get!(Note, id)
 
+  def get_note_by_shortcode!(shortcode), do: Repo.get_by!(Note, shortcode: shortcode)
+
   @doc """
   Creates a note.
 

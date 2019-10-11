@@ -44,8 +44,8 @@ export const NewNote = (props: Props) => {
   // Use redux to redirect user after saving
   const dispatch = useDispatch();
   const goToNote = useCallback(
-    (noteId, password) => {
-      dispatch(push(`/note/${noteId}/${password}`));
+    (noteShortcode, password) => {
+      dispatch(push(`/note/${noteShortcode}/${password}`));
     },
     [dispatch]
   );
@@ -81,8 +81,8 @@ export const NewNote = (props: Props) => {
       }
       const res = await axios.post("/api/notes", data);
       setIsLoading(false);
-      const id = res.data.data.id;
-      goToNote(id, password);
+      const { shortcode } = res.data.data;
+      goToNote(shortcode, password);
     } catch (e) {
       setIsLoading(false);
       setIsError(true);

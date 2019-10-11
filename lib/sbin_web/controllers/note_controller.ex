@@ -28,8 +28,8 @@ defmodule SbinWeb.NoteController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    note = Notes.get_note!(id)
+  def show(conn, %{"id" => shortcode}) do
+    note = Notes.get_note_by_shortcode!(shortcode)
     render(conn, "show.json", note: note)
   end
 
