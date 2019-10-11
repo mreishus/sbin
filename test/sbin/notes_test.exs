@@ -11,14 +11,16 @@ defmodule Sbin.NotesTest do
       expire: "2010-04-17T14:00:00Z",
       title: "some title",
       syntax: "some syntax",
-      salt: "some salt"
+      salt: "some salt",
+      shortcode: "some shortcode"
     }
     @update_attrs %{
       content: "some updated content",
       expire: "2011-05-18T15:01:01Z",
       title: "some updated title",
-      syntax: "some syntax",
-      salt: "some salt"
+      syntax: "some updated syntax",
+      salt: "some updated salt",
+      shortcode: "some updated shortcode"
     }
     @invalid_attrs %{content: nil, expire: nil, title: nil}
 
@@ -48,6 +50,7 @@ defmodule Sbin.NotesTest do
       assert note.title == "some title"
       assert note.syntax == "some syntax"
       assert note.salt == "some salt"
+      assert note.shortcode == "some shortcode"
     end
 
     test "create_note/1 with invalid data returns error changeset" do
@@ -60,6 +63,9 @@ defmodule Sbin.NotesTest do
       assert note.content == "some updated content"
       assert note.expire == DateTime.from_naive!(~N[2011-05-18T15:01:01Z], "Etc/UTC")
       assert note.title == "some updated title"
+      assert note.syntax == "some updated syntax"
+      assert note.salt == "some updated salt"
+      assert note.shortcode == "some updated shortcode"
     end
 
     test "update_note/2 with invalid data returns error changeset" do

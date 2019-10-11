@@ -7,12 +7,18 @@ defmodule SbinWeb.NoteControllerTest do
   @create_attrs %{
     content: "some content",
     expire: "2010-04-17T14:00:00Z",
-    title: "some title"
+    title: "some title",
+    syntax: "some syntax",
+    salt: "some salt",
+    shortcode: "some shortcode"
   }
   @update_attrs %{
     content: "some updated content",
     expire: "2011-05-18T15:01:01Z",
-    title: "some updated title"
+    title: "some updated title",
+    syntax: "some updated syntax",
+    salt: "some updated salt",
+    shortcode: "some updated shortcode"
   }
   @invalid_attrs %{content: nil, expire: nil, title: nil}
 
@@ -46,7 +52,10 @@ defmodule SbinWeb.NoteControllerTest do
                  "id" => id,
                  "content" => "some content",
                  # "expire" => "2010-04-17T14:00:00Z",
-                 "title" => "some title"
+                 "title" => "some title",
+                 "syntax" => "some syntax",
+                 "salt" => "some salt",
+                 "shortcode" => "some shortcode"
                } = json_response(conn, 200)["data"]
     end
 
@@ -69,7 +78,10 @@ defmodule SbinWeb.NoteControllerTest do
                "id" => id,
                "content" => "some updated content",
                "expire" => "2011-05-18T15:01:01Z",
-               "title" => "some updated title"
+               "title" => "some updated title",
+               "syntax" => "some updated syntax",
+               "salt" => "some updated salt",
+               "shortcode" => "some updated shortcode"
              } = json_response(conn, 200)["data"]
     end
 

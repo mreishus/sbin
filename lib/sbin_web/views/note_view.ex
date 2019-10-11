@@ -17,7 +17,8 @@ defmodule SbinWeb.NoteView do
       content: note.content,
       expire: note.expire,
       syntax: note.syntax,
-      salt: note.salt
+      salt: note.salt,
+      shortcode: note.shortcode
     }
   end
 end

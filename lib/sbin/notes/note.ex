@@ -50,6 +50,7 @@ defmodule Sbin.Notes.Note do
     field :title, :string
     field :syntax, :string
     field :salt, :string
+    field :shortcode, :string
 
     timestamps()
   end
@@ -57,7 +58,7 @@ defmodule Sbin.Notes.Note do
   @doc false
   def changeset(note, attrs) do
     note
-    |> cast(attrs, [:title, :content, :expire, :syntax, :salt])
-    |> validate_required([:content, :expire])
+    |> cast(attrs, [:title, :content, :expire, :syntax, :salt, :shortcode])
+    |> validate_required([:content, :expire, :salt, :shortcode])
   end
 end
