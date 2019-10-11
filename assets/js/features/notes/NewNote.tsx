@@ -15,7 +15,7 @@ import { keyFromPassword, encrypt, makeRandomString } from "../../crypto";
 interface Props {}
 
 // Can't use slashes in password due to react-router
-const makePassword = () => makeRandomString(15).replace("/", "s");
+const makePassword = () => makeRandomString(9).replace("/", "s");
 
 export const NewNote = (props: Props) => {
   // State: loading and error flags, error message, syntax dropdown
