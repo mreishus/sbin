@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import axios from "axios";
 
 import { PrismAsync as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -9,6 +9,7 @@ import { keyFromPasswordSalt, decrypt } from "../../crypto";
 interface Props {
   id: string;
   password: string;
+  isNew: boolean;
 }
 
 const useDataApi = (initialUrl: string, initialData: any) => {
@@ -33,7 +34,9 @@ const useDataApi = (initialUrl: string, initialData: any) => {
   return { data, isLoading, isError, doFetch: setUrl };
 };
 
-export const Note = ({ id, password }: Props) => {
+const getCurrentUrlNoQuery = () => window.location.href.split("?")[0];
+
+export const Note = ({ id, password, isNew }: Props) => {
   const [decryptedContent, setDecryptedContent] = useState("Decrypting..");
   const [decryptedTitle, setDecryptedTitle] = useState("");
   const { data, isLoading, isError, doFetch } = useDataApi(
@@ -63,6 +66,12 @@ export const Note = ({ id, password }: Props) => {
     decode(content, title, salt);
   }, [data, password]);
 
+  // Autofocus effect
+  const urlRef = useCallback(node => {
+    node.focus();
+    node.select();
+  }, []);
+
   if (isError) {
     return <div>Error.</div>;
   } else if (isLoading) {
@@ -71,8 +80,21 @@ export const Note = ({ id, password }: Props) => {
     return <div>Data is null</div>;
   }
   const note = data.data;
+
   return (
     <div className="container mx-auto m-4 px-2">
+      {isNew && (
+        <div className="border border-green-600 rounded w-1/2 p-2 mx-auto bg-green-800 shadow-lg">
+          Success!
+          <input
+            ref={urlRef}
+            readOnly
+            className="bg-green-900 text-green-100 rounded w-full p-1 block"
+            type="text"
+            value={getCurrentUrlNoQuery()}
+          />
+        </div>
+      )}
       <h1 className="text-3xl text-green-200">View Paste</h1>
       {decryptedTitle}
       <SyntaxHighlighter
