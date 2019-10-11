@@ -32,8 +32,6 @@ const useDataApi = (initialUrl: string, initialData: any) => {
   return { data, isLoading, isError, doFetch: setUrl };
 };
 
-//const result = await axios("/api/notes/" + id);
-
 export const Note = ({ id }: Props) => {
   const [decryptedContent, setDecryptedContent] = useState("Decrypting..");
   const { data, isLoading, isError, doFetch } = useDataApi(
@@ -78,9 +76,6 @@ export const Note = ({ id }: Props) => {
         customStyle={{ whiteSpace: "pre-wrap" }}
       >
         {decryptedContent}
-        {/*
-        {note.content}
-          */}
       </SyntaxHighlighter>
     </div>
   );
