@@ -1916,9 +1916,9 @@ comma-separated-tokens@^1.0.0:
   integrity sha512-Jrx3xsP4pPv4AwJUDWY9wOXGtwPXARej6Xd99h4TUGotmf8APuquKMpK+dnD3UgyxK7OEWaisjZz+3b5jtL6xQ==
 
 commander@^2.11.0, commander@^2.20.0:
-  version "2.20.1"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.1.tgz#3863ce3ca92d0831dcf2a102f5fb4b5926afd0f9"
-  integrity sha512-cCuLsMhJeWQ/ZpsFTbE765kvVfoeSddc4nU3up4fV+fDBcfUXnbITJ+JzhkdjzOqhURjZgujxaioam4RM9yGUg==
+  version "2.20.3"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
+  integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
 
 commondir@^1.0.1:
   version "1.0.1"
@@ -6423,7 +6423,7 @@ terser-webpack-plugin@^1.4.1:
     webpack-sources "^1.4.0"
     worker-farm "^1.7.0"
 
-terser-webpack-plugin@^2.1.2:
+terser-webpack-plugin@^2.1.3:
   version "2.1.3"
   resolved "https://registry.yarnpkg.com/terser-webpack-plugin/-/terser-webpack-plugin-2.1.3.tgz#85430da71ba88a60072bf659589eafaf6a00dc22"
   integrity sha512-z5Utx0TxmirZvRNL1GC795tlDM+bO83ZfcbtkL1y1VLoWtZ7S2a9+HFCLnabSRE/Yjsu4zCEX6U6CIRo4dVmcQ==
@@ -6779,10 +6779,10 @@ webpack-sources@^1.1.0, webpack-sources@^1.4.0, webpack-sources@^1.4.1, webpack-
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack@^4.41.0:
-  version "4.41.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.41.0.tgz#db6a254bde671769f7c14e90a1a55e73602fc70b"
-  integrity sha512-yNV98U4r7wX1VJAj5kyMsu36T8RPPQntcb5fJLOsMz/pt/WrKC0Vp1bAlqPLkA1LegSwQwf6P+kAbyhRKVQ72g==
+webpack@^4.41.1:
+  version "4.41.1"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.41.1.tgz#5388dd3047d680d5d382a84249fd4750e87372fd"
+  integrity sha512-ak7u4tUu/U63sCVxA571IuPZO/Q0pZ9cEXKg+R/woxkDzVovq57uB6L2Hlg/pC8LCU+TWpvtcYwsstivQwMJmw==
   dependencies:
     "@webassemblyjs/ast" "1.8.5"
     "@webassemblyjs/helper-module-context" "1.8.5"
