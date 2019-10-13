@@ -32,7 +32,7 @@ config :sbin, SbinWeb.Endpoint,
 # If you are doing OTP releases, you need to instruct Phoenix
 # to start each relevant endpoint:
 #
-#     config :sbin, SbinWeb.Endpoint, server: true
+config :sbin, SbinWeb.Endpoint, server: true
 #
 # Then you can assemble a release by calling `mix release`.
 # See `mix help release` for more information.
