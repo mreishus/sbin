@@ -95,7 +95,10 @@ export const Note = ({ id, password, isNew }: Props) => {
         style={tomorrow}
         wrapLines={true}
         className={"whitespace-pre-wrap rounded-lg mt-2 text-base"}
-        customStyle={{ whiteSpace: "pre-wrap" }}
+        customStyle={{
+          whiteSpace: "pre-wrap",
+          background: "rgb(0, 0, 0) none repeat scroll 0% 0%"
+        }}
       >
         {decryptedContent}
       </SyntaxHighlighter>

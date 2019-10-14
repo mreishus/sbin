@@ -21,6 +21,15 @@
 }
 .font-ibm { font-family: 'pxplus_ibm_vga9regular', Arial, sans-serif; }
 
+html {
+    min-height: 100%;
+}
+
+.blue-gradient {
+    /* blue-800 to black */
+    background: linear-gradient(150deg, #2c5282 0%, #000 100%);
+}
+
 /* Workaround for SyntaxHighlighter */
 pre.whitespace-pre-wrap>code { white-space: pre-wrap !important; }
 

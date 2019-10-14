@@ -7,7 +7,7 @@
     <title>sbin</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
-  <body class="antialiased text-gray-200 bg-blue-800">
+  <body class="antialiased text-gray-200 blue-gradient">
     <%= render @view_module, @view_template, assigns %>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
