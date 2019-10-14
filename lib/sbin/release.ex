@@ -1,4 +1,11 @@
 defmodule Sbin.Release do
+  @moduledoc """
+  Helper for running Migrations after deployed by release.
+  See https://hexdocs.pm/phoenix/releases.html for more info.
+
+  ./start.sh allows us to run `./bin/sbin eval "Sbin.Release.migrate"` when
+  starting the app up.
+  """
   @app :sbin
 
   def migrate do
