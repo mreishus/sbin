@@ -16,6 +16,9 @@ const purgecss = require("@fullhuman/postcss-purgecss")({
   //defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
 });
 
+// console.log({ z: process.env });
+// console.log({ z: process.env.npm_lifecycle_event === "deploy" });
+
 module.exports = {
   plugins: [
     require("postcss-import"),
@@ -23,6 +26,7 @@ module.exports = {
     require("autoprefixer"),
     // Disabled, NODE_ENV is always dev here?
     // Spent a while trying to figure this up, not successful
-    ...(process.env.NODE_ENV === "production" ? [purgecss] : [purgecss])
+    // This works!
+    ...(process.env.npm_lifecycle_event === "deploy" ? [purgecss] : [])
   ]
 };
