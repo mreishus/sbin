@@ -23,11 +23,11 @@ RUN mix deps.compile
 # build assets
 COPY assets assets
 COPY priv priv
+COPY lib lib
 RUN cd assets && yarn install && yarn run deploy
 RUN mix phx.digest
 
 # build project
-COPY lib lib
 RUN mix compile
 
 # build release
