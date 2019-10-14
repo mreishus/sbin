@@ -11,9 +11,12 @@ defmodule Sbin.NoteCleaner do
 
   def run do
     Logger.info("NoteCleaner: Starting.")
-    count = Notes.count_outdated_notes()
-    Logger.info("NoteCleaner: Deleting #{count} outdated notes.")
-    Notes.delete_outdated_notes()
-    Logger.info("NoteCleaner: Deleted #{count} outdated successfully.")
+    count = Notes.count_expired_notes()
+
+    if count > 0 do
+      Logger.info("NoteCleaner: Deleting #{count} expired notes.")
+      Notes.delete_expired_notes()
+      Logger.info("NoteCleaner: Deleted #{count} expired notes successfully.")
+    end
   end
 end
