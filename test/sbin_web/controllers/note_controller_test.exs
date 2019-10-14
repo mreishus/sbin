@@ -6,7 +6,7 @@ defmodule SbinWeb.NoteControllerTest do
 
   @create_attrs %{
     content: "some content",
-    expire: "2010-04-17T14:00:00Z",
+    expire: "2030-04-17T14:00:00Z",
     title: "some title",
     syntax: "some syntax",
     salt: "some salt",
@@ -14,7 +14,7 @@ defmodule SbinWeb.NoteControllerTest do
   }
   @update_attrs %{
     content: "some updated content",
-    expire: "2011-05-18T15:01:01Z",
+    expire: "2031-05-18T15:01:01Z",
     title: "some updated title",
     syntax: "some updated syntax",
     salt: "some updated salt",
@@ -54,7 +54,7 @@ defmodule SbinWeb.NoteControllerTest do
         assert %{
                  "id" => id,
                  "content" => "some content",
-                 # "expire" => "2010-04-17T14:00:00Z",
+                 # "expire" => "2030-04-17T14:00:00Z",
                  "title" => "some title",
                  "syntax" => "some syntax",
                  "salt" => "some salt"
@@ -84,7 +84,7 @@ defmodule SbinWeb.NoteControllerTest do
       assert %{
                "id" => id,
                "content" => "some updated content",
-               "expire" => "2011-05-18T15:01:01Z",
+               "expire" => "2031-05-18T15:01:01Z",
                "title" => "some updated title",
                "syntax" => "some updated syntax",
                "salt" => "some updated salt",
