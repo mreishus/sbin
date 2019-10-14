@@ -37,7 +37,11 @@ defmodule Sbin.Notes do
   """
   def get_note!(id), do: Repo.get!(Note, id)
 
-  def get_note_by_shortcode!(shortcode), do: Repo.get_by!(Note, shortcode: shortcode)
+  def get_active_note_by_shortcode!(shortcode) do
+    Note
+    |> not_expired_query()
+    |> Repo.get_by!(shortcode: shortcode)
+  end
 
   @doc """
   Creates a note.
@@ -139,5 +143,10 @@ defmodule Sbin.Notes do
   def outdated_query(query) do
     now = DateTime.utc_now()
     from(n in query, where: n.expire < ^now)
+  end
+
+  def not_expired_query(query) do
+    now = DateTime.utc_now()
+    from(n in query, where: n.expire > ^now)
   end
 end
