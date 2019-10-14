@@ -11,7 +11,7 @@ export const AppRouter = (props: Props) => {
   return (
     <Switch>
       <Route path="/about" component={AboutIndex} />
-      <Route path="/note/:id/:password" component={NoteShow} />
+      <Route path="/note/:id" component={NoteShow} />
       <Route path="/note" component={NoteIndex} />
       <Route path="/" component={NoteIndex} />
     </Switch>

@@ -9,10 +9,16 @@ const useQuery = () => {
   return new URLSearchParams(useLocation().search);
 };
 
-export const NoteShow = ({ match }: Props) => {
+export const NoteShow = ({ match, location }: Props) => {
   const {
-    params: { id, password }
+    params: { id }
   } = match;
+
+  console.log({ match, location });
+  let password = "";
+  if (typeof location.hash == "string") {
+    password = location.hash.substr(1);
+  }
 
   const q = useQuery();
   const isNew = q.get("new") === "1";

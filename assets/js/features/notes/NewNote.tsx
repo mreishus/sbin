@@ -46,7 +46,7 @@ export const NewNote = (props: Props) => {
   const dispatch = useDispatch();
   const goToNote = useCallback(
     (noteShortcode, password) => {
-      dispatch(push(`/note/${noteShortcode}/${password}?new=1`));
+      dispatch(push(`/note/${noteShortcode}?new=1#${password}`));
     },
     [dispatch]
   );

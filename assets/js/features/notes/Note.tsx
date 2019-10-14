@@ -15,9 +15,11 @@ interface Props {
 }
 
 const getCurrentUrlNoQuery = () => window.location.href.split("?")[0];
+const getCurrentNoteUrl = (password: string) =>
+  getCurrentUrlNoQuery() + "#" + password;
 
 export const Note = ({ id, password, isNew }: Props) => {
-  const [isCopied, setCopied] = useClipboard(getCurrentUrlNoQuery(), {
+  const [isCopied, setCopied] = useClipboard(getCurrentNoteUrl(password), {
     successDuration: 10000
   });
   const [decryptedContent, setDecryptedContent] = useState("Decrypting..");
@@ -81,7 +83,7 @@ export const Note = ({ id, password, isNew }: Props) => {
             readOnly
             className="bg-green-900 text-green-100 rounded w-full p-1 block"
             type="text"
-            value={getCurrentUrlNoQuery()}
+            value={getCurrentNoteUrl(password)}
           />
           <button
             onClick={setCopied}

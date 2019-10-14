@@ -5,8 +5,8 @@ export const AboutIndex = () => {
   return (
     <div className="container mx-auto m-4 px-2">
       <div className="max-w-lg mx-auto">
-        <h2 className="text-lg">overview</h2>
-        <p className="font-semibold mt-4">
+        <h2 className="text-xl text-green-300">overview</h2>
+        <p className="font-semibold mt-2">
           sbin is an open source encrypted paste-bin, where the server has zero
           knowledge of pasted data.
         </p>
@@ -25,12 +25,14 @@ export const AboutIndex = () => {
           , but uses its own code. it uses postgres, elixir, phoenix, typescript
           and react.
         </p>
-        <h2 className="text-lg mt-2">encryption</h2>
-        <p className="mt-4">
+        <h2 className="text-xl mt-2 text-green-300">encryption</h2>
+        <p className="mt-2">
           when making a new paste, the javascript client chooses a random
           password to encrypt the data with before sending it to the server. the
           server stores the encrypted data only; it does not know the password
-          to decrypt it. the password is inside the URL shown to the user.
+          to decrypt it. the password is inside the URL shown to the user. since
+          the password is inside the fragment of the url after the hash, it is
+          never sent to the server.
         </p>
         <p className="mt-2">
           when reading a paste, the server sends the encrypted data to the
@@ -38,6 +40,14 @@ export const AboutIndex = () => {
           decrypt the contents. if the password is wrong, the browser will only
           display gibberish.
         </p>
+        <h2 className="text-xl mt-2 text-green-300">source code</h2>
+        <p className="mt-2">
+          <a href="https://github.com/mreishus/sbin/" className={linkClasses}>
+            sbin on github
+          </a>
+        </p>
+        <h2 className="text-xl mt-2 text-green-300">version</h2>
+        <p className="mt-2">0.3.0</p>
       </div>
     </div>
   );
