@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import useClipboard from "react-use-clipboard";
 
@@ -91,7 +91,10 @@ export const Note = ({ id, password, isNew }: Props) => {
     <div className="container mx-auto m-4 px-2">
       {isNew && (
         <div className="border border-green-600 rounded w-3/4 lg:w-1/2 p-2 mx-auto bg-green-800 shadow-lg">
-          ✅ Your paste has been posted.
+          <span role="img" aria-label="Checkmark">
+            ✅
+          </span>{" "}
+          Your paste has been posted.
           <input
             ref={urlRef}
             readOnly

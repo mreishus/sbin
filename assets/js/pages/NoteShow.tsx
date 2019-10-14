@@ -15,7 +15,7 @@ export const NoteShow = ({ match }: Props) => {
   } = match;
 
   const q = useQuery();
-  const isNew = q.get("new") == "1";
+  const isNew = q.get("new") === "1";
 
   return (
     <div>
