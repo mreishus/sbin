@@ -23,23 +23,6 @@ export default function App() {
               <span className="text-green-200">!</span>
             </span>
           </Link>
-          {/*
-          <Link to="/" className={linkClass}>
-            Home
-          </Link>{" "}
-          <Link to="/test_page" className={linkClass}>
-            Test Page
-          </Link>{" "}
-          <Link to="/note" className={linkClass}>
-            Note Index
-          </Link>{" "}
-          <Link
-            to="/note/2223ad00-5ab2-4e57-815d-11ce06b9d17f"
-            className={linkClass}
-          >
-            Show Note
-          </Link>
-            */}
         </nav>
 
         <AppRouter />

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
-import axios from "axios";
 import useClipboard from "react-use-clipboard";
+import useDataApi from "../../hooks/useDataApi";
 
 import { PrismAsync as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -12,28 +12,6 @@ interface Props {
   password: string;
   isNew: boolean;
 }
-
-const useDataApi = (initialUrl: string, initialData: any) => {
-  const [data, setData] = useState(initialData);
-  const [url, setUrl] = useState(initialUrl);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsError(false);
-      setIsLoading(true);
-      try {
-        const result = await axios(url);
-        setData(result.data);
-      } catch (error) {
-        setIsError(true);
-      }
-      setIsLoading(false);
-    };
-    fetchData();
-  }, [url]);
-  return { data, isLoading, isError, doFetch: setUrl };
-};
 
 const getCurrentUrlNoQuery = () => window.location.href.split("?")[0];
 
