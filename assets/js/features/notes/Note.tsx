@@ -6,6 +6,7 @@ import { PrismAsync as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 import { keyFromPasswordSalt, decrypt } from "../../crypto";
+import { format, parseISO, formatDistanceToNow } from "date-fns";
 
 interface Props {
   id: string;
@@ -63,7 +64,9 @@ export const Note = ({ id, password, isNew }: Props) => {
   } else if (data == null || data.data == null) {
     return <div>Data is null</div>;
   }
+
   const note = data.data;
+  const expireDate = parseISO(note.expire);
 
   return (
     <div className="container mx-auto m-4 px-2">
@@ -102,6 +105,12 @@ export const Note = ({ id, password, isNew }: Props) => {
       >
         {decryptedContent}
       </SyntaxHighlighter>
+      <span className="italic text-green-400">
+        expires {formatDistanceToNow(expireDate, { addSuffix: true })}{" "}
+        <span className="text-gray-500">
+          {format(expireDate, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx")}
+        </span>
+      </span>
     </div>
   );
 };
