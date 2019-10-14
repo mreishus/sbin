@@ -43,8 +43,10 @@
     <div class="w-3/4">
       <%= submit "Sign in", class: 'btn btn-primary' %>
       or
+      <%# Disabled Auth routes for now
       <span><%= link "Register", to: Routes.pow_registration_path(@conn, :new),
-      class: 'text-blue-600 underline' %></span>
+      class: 'text-blue-600 underline' % ></span>
+      %>
     </div>
   </div>
 

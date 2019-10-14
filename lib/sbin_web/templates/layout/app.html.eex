@@ -12,15 +12,19 @@
       Header 1
 
 
-      <%= if Pow.Plug.current_user(@conn) do %>
+      <%#
+      Disabled Auth Routes for now
+
+      <%= if Pow.Plug.current_user(@conn) do % >
         <span><%= link "Sign out", to: Routes.pow_session_path(@conn, :delete), 
-      method: :delete, class: 'text-blue-600 underline' %></span>
-      <% else %>
+      method: :delete, class: 'text-blue-600 underline' % ></span>
+      <% else % >
         <span><%= link "Register", to: Routes.pow_registration_path(@conn, :new),
-      class: 'text-blue-600 underline'%></span>
+      class: 'text-blue-600 underline'% ></span>
         <span><%= link "Sign in", to: Routes.pow_session_path(@conn, :new),
-      class: 'text-blue-600 underline'%></span>
-      <% end %>
+      class: 'text-blue-600 underline'% ></span>
+      <% end % >
+    %>
 
 
     </header>
