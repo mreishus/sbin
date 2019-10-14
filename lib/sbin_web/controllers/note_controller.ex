@@ -12,13 +12,10 @@ defmodule SbinWeb.NoteController do
   end
 
   def create(conn, %{"note" => note_params}) do
-    today_plus_one_month = DateTime.utc_now() |> DateTime.add(86_400 * 30, :second)
-    shortcode = :crypto.strong_rand_bytes(6) |> Base.url_encode64()
-
     note_params =
       note_params
-      |> Map.put("expire", today_plus_one_month)
-      |> Map.put("shortcode", shortcode)
+      |> add_shortcode()
+      |> transform_expire()
 
     with {:ok, %Note{} = note} <- Notes.create_note(note_params) do
       conn
@@ -26,6 +23,41 @@ defmodule SbinWeb.NoteController do
       |> put_resp_header("location", Routes.note_path(conn, :show, note))
       |> render("show.json", note: note)
     end
+  end
+
+  defp add_shortcode(note_params) do
+    shortcode = :crypto.strong_rand_bytes(6) |> Base.url_encode64()
+
+    note_params
+    |> Map.put("shortcode", shortcode)
+  end
+
+  defp transform_expire(note_params) do
+    seconds_to_add =
+      case note_params["expire"] do
+        "1 hour" ->
+          3600
+
+        "1 day" ->
+          86_400
+
+        "1 week" ->
+          86_400 * 7
+
+        "1 month" ->
+          86_400 * 31
+
+        "1 year" ->
+          86_400 * 365
+
+        _ ->
+          86_400 * 31
+      end
+
+    expire = DateTime.utc_now() |> DateTime.add(seconds_to_add, :second)
+
+    note_params
+    |> Map.put("expire", expire)
   end
 
   def show(conn, %{"id" => shortcode}) do

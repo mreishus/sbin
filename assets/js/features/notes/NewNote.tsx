@@ -1,16 +1,21 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
-import { useDispatch } from "react-redux";
 import axios from "axios";
 import { push } from "connected-react-router";
-
-import useForm from "../../hooks/useForm";
-
 import Select from "react-select";
-
-import syntaxOptions from "./syntaxOptions";
-import selectTheme from "./selectTheme";
+import { useDispatch } from "react-redux";
 
 import { keyFromPassword, encrypt, makeRandomString } from "../../crypto";
+import selectTheme from "./selectTheme";
+import syntaxOptions from "./syntaxOptions";
+import useForm from "../../hooks/useForm";
+
+const expireOptions = [
+  { value: "1 hour", label: "1 hour" },
+  { value: "1 day", label: "1 day" },
+  { value: "1 week", label: "1 week" },
+  { value: "1 month", label: "1 month" },
+  { value: "1 year", label: "1 year" }
+];
 
 interface Props {}
 
@@ -26,11 +31,7 @@ export const NewNote = (props: Props) => {
     value: "text",
     label: "text"
   });
-
-  // Handle dropdown changes
-  const handleSelectInputChange = (val: any) => {
-    setSyntaxValue(val);
-  };
+  const [expireValue, setExpireValue] = useState(expireOptions[3]);
 
   // Autofocus effect
   const textAreaRef = useRef(null);
@@ -62,7 +63,7 @@ export const NewNote = (props: Props) => {
       }
       const encryptedTitleB64 = encrypt(inputs.title, key);
 
-      const note = {
+      const note: Record<string, string> = {
         ...inputs,
         salt: salt,
         content: encryptedContentB64,
@@ -74,11 +75,14 @@ export const NewNote = (props: Props) => {
       const data = {
         note
       };
-      // @ts-ignore: Object is possibly 'null'.
+
       if (syntaxValue != null && syntaxValue.value != null) {
-        // @ts-ignore: Object is possibly 'null'.
         data.note.syntax = syntaxValue.value;
       }
+      if (expireValue != null && expireValue.value != null) {
+        data.note.expire = expireValue.value;
+      }
+
       const res = await axios.post("/api/notes", data);
       setIsLoading(false);
       const { shortcode } = res.data.data;
@@ -128,7 +132,7 @@ export const NewNote = (props: Props) => {
                     theme={selectTheme}
                     options={syntaxOptions}
                     value={syntaxValue}
-                    onChange={handleSelectInputChange}
+                    onChange={(val: any) => setSyntaxValue(val)}
                     isClearable
                     menuPlacement="top"
                   />
@@ -137,7 +141,12 @@ export const NewNote = (props: Props) => {
               <tr>
                 <td className="py-1 pr-2">expiration</td>
                 <td className="py-1">
-                  <span className="ml-2 font-ibm text-teal-200">One month</span>
+                  <Select
+                    theme={selectTheme}
+                    options={expireOptions}
+                    value={expireValue}
+                    onChange={(val: any) => setExpireValue(val)}
+                  />
                 </td>
               </tr>
               <tr>
