@@ -1,4 +1,7 @@
 {
+  "sideEffects": [
+    "*.css"
+  ],
   "repository": {},
   "license": "MIT",
   "scripts": {
