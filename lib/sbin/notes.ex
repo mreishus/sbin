@@ -103,4 +103,41 @@ defmodule Sbin.Notes do
   def change_note(%Note{} = note) do
     Note.changeset(note, %{})
   end
+
+  @doc """
+  Delete all notes that have an expire date in the past.
+  """
+  def delete_outdated_notes() do
+    Note
+    |> outdated_query()
+    |> Repo.delete_all()
+  end
+
+  @doc """
+  Get a list of all notes that have an expire date in the past.
+  """
+  def list_outdated_notes() do
+    Note
+    |> outdated_query()
+    |> Repo.all()
+  end
+
+  @doc """
+  Get a count of all notes that have expired.
+  Returns a single int.
+  """
+  def count_outdated_notes() do
+    Note
+    |> outdated_query()
+    |> select([n], count(n))
+    |> Repo.one()
+  end
+
+  @doc """
+  Query for getting outdated notes.
+  """
+  def outdated_query(query) do
+    now = DateTime.utc_now()
+    from(n in query, where: n.expire < ^now)
+  end
 end

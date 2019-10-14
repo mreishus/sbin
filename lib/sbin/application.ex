@@ -11,7 +11,9 @@ defmodule Sbin.Application do
       # Start the Ecto repository
       Sbin.Repo,
       # Start the endpoint when the application starts
-      SbinWeb.Endpoint
+      SbinWeb.Endpoint,
+      # Note Cleaner
+      {Periodic, run: &Sbin.NoteCleaner.run/0, every: :timer.minutes(60)}
       # Starts a worker by calling: Sbin.Worker.start_link(arg)
       # {Sbin.Worker, arg},
     ]
