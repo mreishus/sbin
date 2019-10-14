@@ -35,6 +35,9 @@ defmodule SbinWeb.NoteController do
   defp transform_expire(note_params) do
     seconds_to_add =
       case note_params["expire"] do
+        "15 minutes" ->
+          900
+
         "1 hour" ->
           3600
 
@@ -47,8 +50,14 @@ defmodule SbinWeb.NoteController do
         "1 month" ->
           86_400 * 31
 
+        "3 months" ->
+          86_400 * 31 * 3
+
         "1 year" ->
           86_400 * 365
+
+        "3 years" ->
+          86_400 * 365 * 3
 
         _ ->
           86_400 * 31
