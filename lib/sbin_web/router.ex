@@ -23,7 +23,7 @@ defmodule SbinWeb.Router do
   scope "/" do
     pipe_through :browser
 
-    pow_routes()
+    # pow_routes() # Disabled for now
   end
 
   scope "/", SbinWeb do
