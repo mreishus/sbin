@@ -10,10 +10,10 @@ const purgecss = require("@fullhuman/postcss-purgecss")({
     "../lib/sbin_web/templates/**/*.eex",
     "../lib/sbin_web/templates/**/*.leex"
     // etc.
-  ]
+  ],
 
   // Include any special characters you're using in this regular expression
-  //defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
+  defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
 });
 
 // console.log({ z: process.env });
