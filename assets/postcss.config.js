@@ -8,8 +8,8 @@ const purgecss = require("@fullhuman/postcss-purgecss")({
     "./js/**/*.tsx",
     "./js/**/*.ts",
     "../lib/sbin_web/templates/**/*.eex",
-    "../lib/sbin_web/templates/**/*.leex"
-    // etc.
+    "../lib/sbin_web/templates/**/*.leex",
+    "./css/components/*.css"
   ],
 
   // Include any special characters you're using in this regular expression
