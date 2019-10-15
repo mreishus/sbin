@@ -3,6 +3,7 @@ defmodule SbinWeb.NoteController do
 
   alias Sbin.Notes
   alias Sbin.Notes.Note
+  alias Sbin.Metrics
 
   action_fallback SbinWeb.FallbackController
 
@@ -11,13 +12,15 @@ defmodule SbinWeb.NoteController do
     render(conn, "index.json", notes: notes)
   end
 
-  def create(conn, %{"note" => note_params}) do
+  def create(conn, %{"note" => note_params_orig}) do
     note_params =
-      note_params
+      note_params_orig
       |> add_shortcode()
       |> transform_expire()
 
     with {:ok, %Note{} = note} <- Notes.create_note(note_params) do
+      Metrics.note_created(note_params_orig, conn)
+
       conn
       |> put_status(:created)
       |> put_resp_header("location", Routes.note_path(conn, :show, note))
@@ -71,6 +74,7 @@ defmodule SbinWeb.NoteController do
 
   def show(conn, %{"id" => shortcode}) do
     note = Notes.get_active_note_by_shortcode!(shortcode)
+    Metrics.note_shown(note, conn)
     render(conn, "show.json", note: note)
   end
 

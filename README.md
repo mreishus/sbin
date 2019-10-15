@@ -11,10 +11,17 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
-## Learn more
+## Optional Honeycomb Configuration
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+To report metrics to honeycomb.io, set these environment variables when running:
+
+* HONEYCOMB_APIKEY
+* HONEYCOMB_DATASET
+
+Example:
+
+```bash
+export HONEYCOMB_APIKEY="012345678912345678abcde123456789"
+export HONEYCOMB_DATASET="sbin-elixir"
+```
+
