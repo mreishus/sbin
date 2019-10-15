@@ -10,11 +10,14 @@ import syntaxOptions from "./syntaxOptions";
 import useForm from "../../hooks/useForm";
 
 const expireOptions = [
+  { value: "15 minutes", label: "15 minutes" },
   { value: "1 hour", label: "1 hour" },
   { value: "1 day", label: "1 day" },
   { value: "1 week", label: "1 week" },
   { value: "1 month", label: "1 month" },
-  { value: "1 year", label: "1 year" }
+  { value: "3 months", label: "3 months" },
+  { value: "1 year", label: "1 year" },
+  { value: "3 years", label: "3 years" }
 ];
 
 interface Props {}

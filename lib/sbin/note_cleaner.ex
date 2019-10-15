@@ -7,6 +7,7 @@ defmodule Sbin.NoteCleaner do
   """
 
   alias Sbin.Notes
+  alias Sbin.Metrics
   require Logger
 
   def run do
@@ -16,6 +17,7 @@ defmodule Sbin.NoteCleaner do
     if count > 0 do
       Logger.info("NoteCleaner: Deleting #{count} expired notes.")
       Notes.delete_expired_notes()
+      Metrics.note_cleanup(count)
       Logger.info("NoteCleaner: Deleted #{count} expired notes successfully.")
     end
   end

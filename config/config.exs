@@ -7,6 +7,8 @@
 # General application configuration
 use Mix.Config
 
+config :sbin, env: Mix.env()
+
 config :sbin,
   ecto_repos: [Sbin.Repo]
 
