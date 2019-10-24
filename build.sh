@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.3.3 # Bump in AboutIndex.tsx too
+VERSION=0.3.4 # Bump in AboutIndex.tsx too
 # ^ Todo: Make this one source of truth
 
 # exit when any command fails
