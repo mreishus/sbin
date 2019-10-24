@@ -50,7 +50,7 @@ defmodule Sbin.MixProject do
       {:sobelow, ">= 0.0.0", only: :dev, runtime: false},
       {:pow, "~> 1.0.13"},
       {:parent, "~> 0.6.0"},
-      {:poison, "~> 3.1"},
+      {:poison, "~> 4.0.1"},
       {:httpoison, "~> 1.6"}
     ]
   end
