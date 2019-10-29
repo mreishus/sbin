@@ -70,6 +70,8 @@ export const Note = ({ id, password, isNew }: Props) => {
   const note = data.data;
   const expireDate = parseISO(note.expire);
 
+  const tooLong = decryptedContent.length > 200000;
+
   return (
     <div className="container mx-auto m-4 px-2">
       {isNew && (
@@ -95,18 +97,25 @@ export const Note = ({ id, password, isNew }: Props) => {
       )}
       <h1 className="text-3xl text-green-200 mt-4">View Paste</h1>
       {decryptedTitle}
-      <SyntaxHighlighter
-        language={note.syntax || "text"}
-        style={tomorrow}
-        wrapLines={true}
-        className={"whitespace-pre-wrap rounded-lg mt-2 text-base"}
-        customStyle={{
-          whiteSpace: "pre-wrap",
-          background: "rgb(0, 0, 0) none repeat scroll 0% 0%"
-        }}
-      >
-        {decryptedContent}
-      </SyntaxHighlighter>
+      {tooLong && (
+        <pre className="whitespace-pre-wrap rounded-lg mt-2 text-base bg-black text-gray-100 p-4">
+          {decryptedContent}
+        </pre>
+      )}
+      {!tooLong && (
+        <SyntaxHighlighter
+          language={note.syntax || "text"}
+          style={tomorrow}
+          wrapLines={true}
+          className={"whitespace-pre-wrap rounded-lg mt-2 text-base"}
+          customStyle={{
+            whiteSpace: "pre-wrap",
+            background: "rgb(0, 0, 0) none repeat scroll 0% 0%"
+          }}
+        >
+          {decryptedContent}
+        </SyntaxHighlighter>
+      )}
       <span className="italic text-green-400">
         expires {formatDistanceToNow(expireDate, { addSuffix: true })}{" "}
         <span className="text-gray-500">
