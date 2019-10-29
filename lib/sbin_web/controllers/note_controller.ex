@@ -5,7 +5,7 @@ defmodule SbinWeb.NoteController do
   alias Sbin.Notes.Note
   alias Sbin.Metrics
 
-  action_fallback SbinWeb.FallbackController
+  action_fallback(SbinWeb.FallbackController)
 
   def index(conn, _params) do
     notes = Notes.list_notes()
@@ -36,40 +36,30 @@ defmodule SbinWeb.NoteController do
   end
 
   defp transform_expire(note_params) do
-    seconds_to_add =
-      case note_params["expire"] do
-        "15 minutes" ->
-          900
-
-        "1 hour" ->
-          3600
-
-        "1 day" ->
-          86_400
-
-        "1 week" ->
-          86_400 * 7
-
-        "1 month" ->
-          86_400 * 31
-
-        "3 months" ->
-          86_400 * 31 * 3
-
-        "1 year" ->
-          86_400 * 365
-
-        "3 years" ->
-          86_400 * 365 * 3
-
-        _ ->
-          86_400 * 31
-      end
+    seconds_to_add = expire_string_to_seconds(note_params["expire"])
 
     expire = DateTime.utc_now() |> DateTime.add(seconds_to_add, :second)
 
     note_params
     |> Map.put("expire", expire)
+  end
+
+  @spec expire_string_to_seconds(String.t()) :: integer
+  defp expire_string_to_seconds(expire_str) do
+    day_seconds = 86_400
+
+    expires = %{
+      "15 minutes" => 900,
+      "1 hour" => 3600,
+      "1 day" => day_seconds,
+      "1 week" => day_seconds * 7,
+      "1 month" => day_seconds * 31,
+      "3 months" => day_seconds * 31 * 3,
+      "1 year" => day_seconds * 365,
+      "3 years" => day_seconds * 365 * 3
+    }
+
+    Map.get(expires, expire_str, day_seconds * 31)
   end
 
   def show(conn, %{"id" => shortcode}) do

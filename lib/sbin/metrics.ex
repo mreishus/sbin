@@ -1,6 +1,6 @@
 defmodule Sbin.Metrics do
   @moduledoc """
-
+  Sends small metrics to honeycomb.
   """
   alias Sbin.Notes.Note
 
