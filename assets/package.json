@@ -15,7 +15,7 @@
     "@types/base64-js": "^1.2.5",
     "@types/classnames": "^2.2.9",
     "@types/history": "^4.7.3",
-    "@types/jest": "^24.0.19",
+    "@types/jest": "^24.0.21",
     "@types/node": "^12.11.6",
     "@types/pbkdf2": "^3.0.0",
     "@types/react": "^16.9.9",
