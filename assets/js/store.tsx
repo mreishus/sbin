@@ -1,10 +1,6 @@
 import { createBrowserHistory } from "history";
 import { routerMiddleware } from "connected-react-router";
-import {
-  configureStore,
-  Action,
-  getDefaultMiddleware
-} from "redux-starter-kit";
+import { configureStore, Action, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { ThunkAction } from "redux-thunk";
 import createRootReducer, { RootState } from "./reducers";
 
