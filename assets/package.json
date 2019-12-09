@@ -62,7 +62,7 @@
     "copy-webpack-plugin": "^5.0.5",
     "css-loader": "^3.2.1",
     "eslint": "6.x",
-    "eslint-config-react-app": "^5.0.2",
+    "eslint-config-react-app": "^5.1.0",
     "eslint-plugin-flowtype": "3.x",
     "eslint-plugin-import": "2.x",
     "eslint-plugin-jsx-a11y": "6.x",
