@@ -47,7 +47,7 @@ export const AboutIndex = () => {
           </a>
         </p>
         <h2 className="text-xl mt-2 text-green-300">version</h2>
-        <p className="mt-2">1.0.4</p>
+        <p className="mt-2">1.0.5</p>
       </div>
     </div>
   );
