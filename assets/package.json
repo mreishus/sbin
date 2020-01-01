@@ -17,7 +17,7 @@
     "@types/classnames": "^2.2.9",
     "@types/history": "^4.7.3",
     "@types/jest": "^24.0.25",
-    "@types/node": "^13.1.1",
+    "@types/node": "^13.1.2",
     "@types/pbkdf2": "^3.0.0",
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
