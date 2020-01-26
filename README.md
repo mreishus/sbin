@@ -25,7 +25,7 @@ display gibberish.
 mix deps.get
 mix ecto.setup
 cd assets
-yarn install
+npm install
 cd ../
 mix phx.server
 ```
