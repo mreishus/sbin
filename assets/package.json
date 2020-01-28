@@ -16,7 +16,7 @@
     "@types/base64-js": "^1.2.5",
     "@types/classnames": "^2.2.9",
     "@types/history": "^4.7.4",
-    "@types/jest": "^24.9.1",
+    "@types/jest": "^25.1.0",
     "@types/node": "^13.5.0",
     "@types/pbkdf2": "^3.0.0",
     "@types/react": "^16.9.19",
@@ -71,7 +71,7 @@
     "mini-css-extract-plugin": "^0.9.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "prettier": "^1.19.1",
-    "terser-webpack-plugin": "^2.3.2",
+    "terser-webpack-plugin": "^2.3.3",
     "typescript": "^3.7.5",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
