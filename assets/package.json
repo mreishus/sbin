@@ -16,7 +16,7 @@
     "@types/base64-js": "^1.2.5",
     "@types/classnames": "^2.2.9",
     "@types/history": "^4.7.5",
-    "@types/jest": "^25.1.1",
+    "@types/jest": "^25.1.2",
     "@types/node": "^13.7.0",
     "@types/pbkdf2": "^3.0.0",
     "@types/react": "^16.9.19",
@@ -45,7 +45,7 @@
     "react-select": "^3.0.8",
     "react-syntax-highlighter": "^12.2.1",
     "react-use-clipboard": "^1.0.0",
-    "tailwindcss": "^1.1.4"
+    "tailwindcss": "^1.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
@@ -54,7 +54,7 @@
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
     "@babel/preset-typescript": "^7.8.3",
-    "@fullhuman/postcss-purgecss": "^2.0.5",
+    "@fullhuman/postcss-purgecss": "^2.0.6",
     "@typescript-eslint/eslint-plugin": "2.x",
     "@typescript-eslint/parser": "2.x",
     "babel-eslint": "10.x",
