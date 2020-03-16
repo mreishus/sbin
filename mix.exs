@@ -48,7 +48,7 @@ defmodule Sbin.MixProject do
       {:dialyxir, ">= 1.0.0", only: :dev, runtime: false},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:sobelow, ">= 0.0.0", only: :dev, runtime: false},
-      {:pow, "~> 1.0.13"},
+      {:pow, "~> 1.0.19"},
       {:parent, "~> 0.8.0"},
       {:poison, "~> 4.0.1"},
       {:httpoison, "~> 1.6"}
