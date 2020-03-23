@@ -5,7 +5,7 @@ import { ThunkAction } from "redux-thunk";
 import createRootReducer, { RootState } from "./reducers";
 
 export const history = createBrowserHistory({
-  basename: "/f"
+  basename: "/f",
 });
 const rootReducer = createRootReducer(history);
 
@@ -13,7 +13,7 @@ const middleware = [...getDefaultMiddleware(), routerMiddleware(history)];
 
 const store = configureStore({
   reducer: rootReducer,
-  middleware
+  middleware,
 });
 
 /* Hot reload support - This doesn't work because phoenix

@@ -71,5 +71,5 @@ export {
   keyFromPasswordSalt,
   encrypt,
   decrypt,
-  makeRandomString
+  makeRandomString,
 };

@@ -9,11 +9,11 @@ const purgecss = require("@fullhuman/postcss-purgecss")({
     "./js/**/*.ts",
     "../lib/sbin_web/templates/**/*.eex",
     "../lib/sbin_web/templates/**/*.leex",
-    "./css/components/*.css"
+    "./css/components/*.css",
   ],
 
   // Include any special characters you're using in this regular expression
-  defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
+  defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
 });
 
 // console.log({ z: process.env });
@@ -27,6 +27,6 @@ module.exports = {
     // Disabled, NODE_ENV is always dev here?
     // Spent a while trying to figure this up, not successful
     // This works!
-    ...(process.env.npm_lifecycle_event === "deploy" ? [purgecss] : [])
-  ]
+    ...(process.env.npm_lifecycle_event === "deploy" ? [purgecss] : []),
+  ],
 };

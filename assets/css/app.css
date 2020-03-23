@@ -13,23 +13,26 @@
 @import "./custom-utilities.css";
 
 @font-face {
-    font-family: 'pxplus_ibm_vga9regular';
-    src: url('/font-css/pxplus_ibm_vga9-webfont.woff2') format('woff2'),
-         url('/font-css/pxplus_ibm_vga9-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "pxplus_ibm_vga9regular";
+  src: url("/font-css/pxplus_ibm_vga9-webfont.woff2") format("woff2"),
+    url("/font-css/pxplus_ibm_vga9-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
-.font-ibm { font-family: 'pxplus_ibm_vga9regular', Arial, sans-serif; }
+.font-ibm {
+  font-family: "pxplus_ibm_vga9regular", Arial, sans-serif;
+}
 
 html {
-    min-height: 100%;
+  min-height: 100%;
 }
 
 .blue-gradient {
-    /* blue-800 to black */
-    background: linear-gradient(150deg, #2c5282 0%, #000 100%);
+  /* blue-800 to black */
+  background: linear-gradient(150deg, #2c5282 0%, #000 100%);
 }
 
 /* Workaround for SyntaxHighlighter */
-pre.whitespace-pre-wrap>code { white-space: pre-wrap !important; }
-
+pre.whitespace-pre-wrap > code {
+  white-space: pre-wrap !important;
+}

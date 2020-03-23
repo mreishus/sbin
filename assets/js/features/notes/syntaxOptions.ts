@@ -127,6 +127,6 @@ const syntaxOptions = [
   { value: "vim", label: "vim" },
   { value: "wiki", label: "wiki" },
   { value: "xojo", label: "xojo" },
-  { value: "yaml", label: "yaml" }
+  { value: "yaml", label: "yaml" },
 ];
 export default syntaxOptions;

@@ -2,7 +2,7 @@
   @apply bg-blue-900 border border-gray-900 rounded-lg py-1 px-2 appearance-none leading-normal;
 }
 .form-control:focus {
-  @apply outline-none shadow-outline
+  @apply outline-none shadow-outline;
 }
 /*
 w-full

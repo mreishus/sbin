@@ -45,9 +45,8 @@
   @apply bg-gray-500;
 }
 
-
 @screen sm {
   .xxxxbtn {
-    @apply text-base
+    @apply text-base;
   }
 }

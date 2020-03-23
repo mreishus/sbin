@@ -17,8 +17,8 @@ const theme = (theme: any) => ({
     primary: "#ebf8ff",
     primary75: "#90cdf4",
     primary50: "#4299e1",
-    primary25: "#2b6cb0"
-  }
+    primary25: "#2b6cb0",
+  },
 });
 
 export default theme;

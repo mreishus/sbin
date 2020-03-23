@@ -17,7 +17,7 @@ const expireOptions = [
   { value: "1 month", label: "1 month" },
   { value: "3 months", label: "3 months" },
   { value: "1 year", label: "1 year" },
-  { value: "3 years", label: "3 years" }
+  { value: "3 years", label: "3 years" },
 ];
 
 interface Props {}
@@ -32,7 +32,7 @@ export const NewNote = (props: Props) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [syntaxValue, setSyntaxValue] = useState({
     value: "text",
-    label: "text"
+    label: "text",
   });
   const [expireValue, setExpireValue] = useState(expireOptions[3]);
 
@@ -70,13 +70,13 @@ export const NewNote = (props: Props) => {
         ...inputs,
         salt: salt,
         content: encryptedContentB64,
-        title: encryptedTitleB64
+        title: encryptedTitleB64,
       };
 
       setIsLoading(true);
       setIsError(false);
       const data = {
-        note
+        note,
       };
 
       if (syntaxValue != null && syntaxValue.value != null) {

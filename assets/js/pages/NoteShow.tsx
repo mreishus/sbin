@@ -11,7 +11,7 @@ const useQuery = () => {
 
 export const NoteShow = ({ match, location }: Props) => {
   const {
-    params: { id }
+    params: { id },
   } = match;
 
   console.log({ match, location });

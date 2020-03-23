@@ -30,7 +30,7 @@ import store from "./store";
 // We could add HMR support here, but it doesn't seem worth
 // it unless we change phoenix to load JS files off a different
 // port in development, so that webpack would be the dev server.
-let $$ = f => document.getElementById(f);
+let $$ = (f) => document.getElementById(f);
 if ($$("react-app-root")) {
   render(
     <Provider store={store}>
@@ -39,4 +39,3 @@ if ($$("react-app-root")) {
     $$("react-app-root")
   );
 }
-

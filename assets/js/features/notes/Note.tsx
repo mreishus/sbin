@@ -20,7 +20,7 @@ const getCurrentNoteUrl = (password: string) =>
 
 export const Note = ({ id, password, isNew }: Props) => {
   const [isCopied, setCopied] = useClipboard(getCurrentNoteUrl(password), {
-    successDuration: 10000
+    successDuration: 10000,
   });
   const [decryptedContent, setDecryptedContent] = useState("Decrypting..");
   const [decryptedTitle, setDecryptedTitle] = useState("");
@@ -52,7 +52,7 @@ export const Note = ({ id, password, isNew }: Props) => {
   }, [data, password]);
 
   // Autofocus effect
-  const urlRef = useCallback(node => {
+  const urlRef = useCallback((node) => {
     if (node != null) {
       node.focus();
       node.select();
@@ -110,7 +110,7 @@ export const Note = ({ id, password, isNew }: Props) => {
           className={"whitespace-pre-wrap rounded-lg mt-2 text-base"}
           customStyle={{
             whiteSpace: "pre-wrap",
-            background: "rgb(0, 0, 0) none repeat scroll 0% 0%"
+            background: "rgb(0, 0, 0) none repeat scroll 0% 0%",
           }}
         >
           {decryptedContent}

@@ -1,1 +1,1 @@
-declare module 'react-use-clipboard';
+declare module "react-use-clipboard";
