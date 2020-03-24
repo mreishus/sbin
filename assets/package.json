@@ -9,7 +9,7 @@
     "watch": "webpack --mode development --watch",
     "eslint": "eslint --ext .js,.ts,.tsx js/**",
     "tsc": "tsc",
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write js"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.2.5",
@@ -53,11 +53,11 @@
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
-    "@babel/preset-react": "^7.9.1",
+    "@babel/preset-react": "^7.9.4",
     "@babel/preset-typescript": "^7.9.0",
     "@fullhuman/postcss-purgecss": "^2.1.0",
-    "@typescript-eslint/eslint-plugin": "^2.24.0",
-    "@typescript-eslint/parser": "^2.24.0",
+    "@typescript-eslint/eslint-plugin": "^2.25.0",
+    "@typescript-eslint/parser": "^2.25.0",
     "babel-eslint": "10.x",
     "babel-loader": "^8.1.0",
     "copy-webpack-plugin": "^5.1.1",
@@ -71,10 +71,10 @@
     "eslint-plugin-react-hooks": "1.x",
     "mini-css-extract-plugin": "^0.9.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
-    "prettier": "^2.0.1",
+    "prettier": "^2.0.2",
     "terser-webpack-plugin": "^2.3.5",
     "typescript": "^3.8.3",
-    "webpack": "^4.42.0",
+    "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
   },
   "browserslist": {
