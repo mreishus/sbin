@@ -16,7 +16,7 @@
       Disabled Auth Routes for now
 
       <%= if Pow.Plug.current_user(@conn) do % >
-        <span><%= link "Sign out", to: Routes.pow_session_path(@conn, :delete), 
+        <span><%= link "Sign out", to: Routes.pow_session_path(@conn, :delete),
       method: :delete, class: 'text-blue-600 underline' % ></span>
       <% else % >
         <span><%= link "Register", to: Routes.pow_registration_path(@conn, :new),
@@ -35,7 +35,7 @@
       <%= if get_flash(@conn, :error) != nil do %>
         <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <% end %>
-      <%= render @view_module, @view_template, assigns %>
+      <%= @inner_content %>
     </main>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>

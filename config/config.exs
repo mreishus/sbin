@@ -17,7 +17,7 @@ config :sbin, SbinWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "ftp2bzqyMJbpNr6yfeDxvULxgEf9JD7kuFgJdo+hZsizDEFp8Epj0mGxsJ61M0vu",
   render_errors: [view: SbinWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Sbin.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub_server: Sbin.PubSub
 
 # Configures Elixir's Logger
 config :logger, :console,
