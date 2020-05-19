@@ -6,7 +6,7 @@ defaults.device = torch.device("cpu")
 path = Path(".")
 learner = load_learner("./export.pkl")
 
-f = open("/tmp/test.txt", "r")
+f = open("./test_ruby.txt", "r")
 test_file_contents = f.read()
 
 _, _, losses = learner.predict(test_file_contents)

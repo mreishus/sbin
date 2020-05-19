@@ -1,0 +1,22 @@
+FROM continuumio/miniconda3
+
+### Dockerfile.2
+# This was created by taking the official requirements.yml
+# in fastai2.  No optimizations done at all.
+# Works with no warnings but is probably the largest.
+# Size: 6.35 GB.
+
+COPY environment2.yml .
+RUN conda env create -f environment2.yml
+
+# Make RUN commands use the new environment:
+SHELL ["conda", "run", "-n", "fastai2", "/bin/bash", "-c"]
+
+RUN pip install fastai2
+
+COPY test_ruby.txt .
+COPY run.py .
+COPY export.pkl .
+
+# The code to run when container is started:
+ENTRYPOINT ["conda", "run", "-n", "fastai2", "python", "run.py"]

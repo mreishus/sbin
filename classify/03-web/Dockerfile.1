@@ -1,0 +1,32 @@
+#FROM frolvlad/alpine-miniconda3 # doesn't have bin/bash
+FROM continuumio/miniconda3
+
+### Dockerfile.1
+# This was created by taking the official requirements.yml
+# in fastai2, removing some packages and changing pytorch to
+# pytorch-cpu.
+#
+# This program built with dockerfile works, but creates warnings.
+# Size: 6.24 GB.
+
+# This is hardly any savings over the other.
+
+# Warning example:
+# /opt/conda/envs/fastai2/lib/python3.7/site-packages/torch/serialization.py:493: SourceChangeWarning: source code of class 'torch.nn.modules.container.ModuleList' has changed. you can retrieve the original source code by accessing the object's source attribute or set `torch.nn.Module.dump_patches = True` and use the patch tool to revert the changes.
+# warnings.warn(msg, SourceChangeWarning)
+
+
+COPY environment1.yml .
+RUN conda env create -f environment1.yml
+
+# Make RUN commands use the new environment:
+SHELL ["conda", "run", "-n", "fastai2", "/bin/bash", "-c"]
+
+RUN pip install fastai2
+
+COPY test_ruby.txt .
+COPY run.py .
+COPY export.pkl .
+
+# The code to run when container is started:
+ENTRYPOINT ["conda", "run", "-n", "fastai2", "python", "run.py"]

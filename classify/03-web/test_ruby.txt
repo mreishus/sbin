@@ -1,0 +1,13 @@
+class PrivateData
+  def initialize
+    @secret_key = [1,79,427].sample
+  end
+end
+
+data = PrivateData.new
+puts "Can I have your secret_key? #{data.secret_key rescue 'nope'}"
+puts "BUT I WANTZ IT!!!!"
+
+
+puts data.instance_variable_get(:@secret_key)
+puts "MUHAHAHAHAHA"

@@ -1,0 +1,32 @@
+FROM continuumio/miniconda3
+
+# With:
+# jupyter pytorch>=1.3.0 torchvision>=0.5 matplotlib pandas \
+# This works, no warnings, 4.49GB.
+
+# I switched pytorch and torchvision to install -cpu versions, and
+# unexpectedly, the image increased in size to 4.95GB.  +500 mb.
+
+RUN conda install --yes -c fastai -c pytorch  \
+    jupyter pytorch-cpu>=1.3.0 torchvision-cpu>=0.5 matplotlib pandas \
+    requests pyyaml fastprogress>=0.1.22 pillow scikit-learn \
+    scipy spacy \
+    && conda clean -tipsy \
+    && find /opt/conda/ -follow -type f -name '*.a' -delete \
+    && find /opt/conda/ -follow -type f -name '*.pyc' -delete \
+    && find /opt/conda/ -follow -type f -name '*.js.map' -delete
+
+RUN pip install fastai2
+
+# Install starlette and uvicorn
+RUN conda install --yes -c conda-forge starlette uvicorn python-multipart aiohttp \
+    && conda clean -tipsy \
+    && find /opt/conda/ -follow -type f -name '*.a' -delete \
+    && find /opt/conda/ -follow -type f -name '*.pyc' -delete \
+    && find /opt/conda/ -follow -type f -name '*.js.map' -delete
+
+COPY test_ruby.txt .
+COPY server.py .
+COPY export.pkl .
+
+ENTRYPOINT ["python", "server.py"]
