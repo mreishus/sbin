@@ -25,7 +25,10 @@ defmodule SbinWeb.PredictController do
   end
 
   defp do_predict(text) do
-    url = "http://localhost:8000/predict"
+    ### XXX FIXME TODO
+    # Make this configurable.
+    # url = "http://localhost:8000/predict"
+    url = "http://sbin-classifier:8000/predict"
     body = {:form, [text: text]}
     options = [{"Content-Type", "application/json"}]
 
