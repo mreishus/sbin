@@ -26,7 +26,7 @@ interface Props {}
 // Can't use slashes in password due to react-router
 const makePassword = () => makeRandomString(9).replace("/", "s");
 
-export const NewNote = (props: Props) => {
+export const NewNote = (_props: Props) => {
   // State: loading and error flags, error message, syntax dropdown
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -56,53 +56,51 @@ export const NewNote = (props: Props) => {
   );
 
   // Form state, onsubmit function, and generic form handler
-  const { inputs, setInputs, handleSubmit, handleInputChange } = useForm(
-    async () => {
-      try {
-        // Build Encrypted Data
-        const password = makePassword();
-        const { key, salt } = await keyFromPassword(password);
-        const encryptedContentB64 = encrypt(inputs.content, key);
-        if (inputs.title == null) {
-          inputs.title = "";
-        }
-        const encryptedTitleB64 = encrypt(inputs.title, key);
-
-        const note: Record<string, string> = {
-          ...inputs,
-          salt: salt,
-          content: encryptedContentB64,
-          title: encryptedTitleB64,
-        };
-
-        setIsLoading(true);
-        setIsError(false);
-        const data = {
-          note,
-        };
-
-        if (syntaxValue != null && syntaxValue.value != null) {
-          data.note.syntax = syntaxValue.value;
-        }
-        if (expireValue != null && expireValue.value != null) {
-          data.note.expire = expireValue.value;
-        }
-
-        const res = await axios.post("/api/notes", data);
-        setIsLoading(false);
-        const { shortcode } = res.data.data;
-        goToNote(shortcode, password);
-      } catch (e) {
-        setIsLoading(false);
-        setIsError(true);
-        setErrorMessage(e.message);
+  const { inputs, handleSubmit, handleInputChange } = useForm(async () => {
+    try {
+      // Build Encrypted Data
+      const password = makePassword();
+      const { key, salt } = await keyFromPassword(password);
+      const encryptedContentB64 = encrypt(inputs.content, key);
+      if (inputs.title == null) {
+        inputs.title = "";
       }
+      const encryptedTitleB64 = encrypt(inputs.title, key);
+
+      const note: Record<string, string> = {
+        ...inputs,
+        salt: salt,
+        content: encryptedContentB64,
+        title: encryptedTitleB64,
+      };
+
+      setIsLoading(true);
+      setIsError(false);
+      const data = {
+        note,
+      };
+
+      if (syntaxValue != null && syntaxValue.value != null) {
+        data.note.syntax = syntaxValue.value;
+      }
+      if (expireValue != null && expireValue.value != null) {
+        data.note.expire = expireValue.value;
+      }
+
+      const res = await axios.post("/api/notes", data);
+      setIsLoading(false);
+      const { shortcode } = res.data.data;
+      goToNote(shortcode, password);
+    } catch (e) {
+      setIsLoading(false);
+      setIsError(true);
+      setErrorMessage(e.message);
     }
-  );
+  });
 
   const debouncedContent = useDebounce(inputs.content, 1000);
   useEffect(() => {
-    if (debouncedContent == null || debouncedContent == "") {
+    if (debouncedContent == null || debouncedContent === "") {
       return;
     }
     let formData = new FormData();
