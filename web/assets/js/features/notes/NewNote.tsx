@@ -10,6 +10,8 @@ import syntaxOptions from "./syntaxOptions";
 import useForm from "../../hooks/useForm";
 import useDebounce from "../../hooks/useDebounce";
 
+import PredictBar from "./PredictBar";
+
 const expireOptions = [
   { value: "15 minutes", label: "15 minutes" },
   { value: "1 hour", label: "1 hour" },
@@ -25,6 +27,7 @@ interface Props {}
 
 // Can't use slashes in password due to react-router
 const makePassword = () => makeRandomString(9).replace("/", "s");
+const emptyArray: Array<Array<any>> = [];
 
 export const NewNote = (_props: Props) => {
   // State: loading and error flags, error message, syntax dropdown
@@ -36,6 +39,7 @@ export const NewNote = (_props: Props) => {
     label: "text",
   });
   const [expireValue, setExpireValue] = useState(expireOptions[3]);
+  const [predictions, setPredictions] = useState(emptyArray);
 
   // Autofocus effect
   const textAreaRef = useRef(null);
@@ -98,6 +102,8 @@ export const NewNote = (_props: Props) => {
     }
   });
 
+  // When the note content changes, send a request
+  // to the predictions api and store in 'predictions' variable.
   const debouncedContent = useDebounce(inputs.content, 1000);
   useEffect(() => {
     if (debouncedContent == null || debouncedContent === "") {
@@ -111,10 +117,20 @@ export const NewNote = (_props: Props) => {
     })
       .then((response) => response.json())
       .then((myJson) => {
-        console.log("Got json predictions", myJson);
+        if (myJson && myJson.predictions) {
+          setPredictions(myJson.predictions);
+        }
       });
-    console.log("Debounced inputs changed", debouncedContent);
   }, [debouncedContent]);
+
+  useEffect(() => {
+    if (predictions == null || predictions.length === 0) {
+      return;
+    }
+    const firstPrediction = predictions[0];
+    const [lang, _per] = firstPrediction;
+    setSyntaxValue({ value: lang, label: lang });
+  }, [predictions]);
 
   return (
     <div className="container mx-auto m-4 px-2">
@@ -160,6 +176,19 @@ export const NewNote = (_props: Props) => {
                   />
                 </td>
               </tr>
+              {predictions != null && predictions.length > 0 && (
+                <tr>
+                  <td className="py-1 pr-2">&nbsp;</td>
+                  <td className="py-1">
+                    <PredictBar
+                      predictions={predictions}
+                      setLanguage={(lang: string) =>
+                        setSyntaxValue({ value: lang, label: lang })
+                      }
+                    />
+                  </td>
+                </tr>
+              )}
               <tr>
                 <td className="py-1 pr-2">expiration</td>
                 <td className="py-1">
