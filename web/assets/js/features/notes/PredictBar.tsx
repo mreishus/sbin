@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef, useEffect } from "react";
+import React from "react";
 interface Props {
   predictions: Array<Array<any>>; // [["javascript", 0.22], ["ruby", 0.11]]
   setLanguage: any; // (string) => void
