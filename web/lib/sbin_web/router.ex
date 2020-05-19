@@ -43,5 +43,6 @@ defmodule SbinWeb.Router do
   scope "/api", SbinWeb do
     pipe_through :api
     resources "/notes", NoteController, except: [:new, :edit]
+    post "/predict", PredictController, :predict
   end
 end

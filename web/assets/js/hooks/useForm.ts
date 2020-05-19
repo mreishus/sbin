@@ -20,6 +20,7 @@ const useForm = (submitCallback: () => void) => {
       [event.target.name]: event.target.value,
     }));
   };
+
   return {
     handleSubmit,
     handleInputChange,

@@ -8,6 +8,7 @@ import { keyFromPassword, encrypt, makeRandomString } from "../../crypto";
 import selectTheme from "./selectTheme";
 import syntaxOptions from "./syntaxOptions";
 import useForm from "../../hooks/useForm";
+import useDebounce from "../../hooks/useDebounce";
 
 const expireOptions = [
   { value: "15 minutes", label: "15 minutes" },
@@ -54,48 +55,68 @@ export const NewNote = (props: Props) => {
     [dispatch]
   );
 
-  // Form state, form handler, and onsubmit function
-  const { inputs, handleSubmit, handleInputChange } = useForm(async () => {
-    try {
-      // Build Encrypted Data
-      const password = makePassword();
-      const { key, salt } = await keyFromPassword(password);
-      const encryptedContentB64 = encrypt(inputs.content, key);
-      if (inputs.title == null) {
-        inputs.title = "";
+  // Form state, onsubmit function, and generic form handler
+  const { inputs, setInputs, handleSubmit, handleInputChange } = useForm(
+    async () => {
+      try {
+        // Build Encrypted Data
+        const password = makePassword();
+        const { key, salt } = await keyFromPassword(password);
+        const encryptedContentB64 = encrypt(inputs.content, key);
+        if (inputs.title == null) {
+          inputs.title = "";
+        }
+        const encryptedTitleB64 = encrypt(inputs.title, key);
+
+        const note: Record<string, string> = {
+          ...inputs,
+          salt: salt,
+          content: encryptedContentB64,
+          title: encryptedTitleB64,
+        };
+
+        setIsLoading(true);
+        setIsError(false);
+        const data = {
+          note,
+        };
+
+        if (syntaxValue != null && syntaxValue.value != null) {
+          data.note.syntax = syntaxValue.value;
+        }
+        if (expireValue != null && expireValue.value != null) {
+          data.note.expire = expireValue.value;
+        }
+
+        const res = await axios.post("/api/notes", data);
+        setIsLoading(false);
+        const { shortcode } = res.data.data;
+        goToNote(shortcode, password);
+      } catch (e) {
+        setIsLoading(false);
+        setIsError(true);
+        setErrorMessage(e.message);
       }
-      const encryptedTitleB64 = encrypt(inputs.title, key);
-
-      const note: Record<string, string> = {
-        ...inputs,
-        salt: salt,
-        content: encryptedContentB64,
-        title: encryptedTitleB64,
-      };
-
-      setIsLoading(true);
-      setIsError(false);
-      const data = {
-        note,
-      };
-
-      if (syntaxValue != null && syntaxValue.value != null) {
-        data.note.syntax = syntaxValue.value;
-      }
-      if (expireValue != null && expireValue.value != null) {
-        data.note.expire = expireValue.value;
-      }
-
-      const res = await axios.post("/api/notes", data);
-      setIsLoading(false);
-      const { shortcode } = res.data.data;
-      goToNote(shortcode, password);
-    } catch (e) {
-      setIsLoading(false);
-      setIsError(true);
-      setErrorMessage(e.message);
     }
-  });
+  );
+
+  const debouncedContent = useDebounce(inputs.content, 1000);
+  useEffect(() => {
+    if (debouncedContent == null || debouncedContent == "") {
+      return;
+    }
+    let formData = new FormData();
+    formData.append("text", debouncedContent);
+    fetch("/api/predict", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((myJson) => {
+        console.log("Got json predictions", myJson);
+      });
+    console.log("Debounced inputs changed", debouncedContent);
+  }, [debouncedContent]);
 
   return (
     <div className="container mx-auto m-4 px-2">

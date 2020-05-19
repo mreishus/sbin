@@ -9,7 +9,7 @@ REQUIREMENTS:
 DESCRIPTION:
 
 Starts a server on 0.0.0.0, port 8000 that
-listens for POSTS to /upload.
+listens for POSTS to /predict.
 
 It should contain formdata with field "text"
 equal to a string.
@@ -19,7 +19,7 @@ and return an object with predictions. See example below.
 
 EXAMPLE:
 
-curl -X POST -F 'text=for i in range(10):' http://localhost:8000/upload
+curl -X POST -F 'text=for i in range(10):' http://localhost:8000/predict
 
 {"predictions":[["python",0.8328688740730286],["go",0.06257648020982742],["javascript",0.054476577788591385],["haskell",0.034811630845069885],["elixir",0.009497438557446003],["typescript",0.004690524190664291],["ruby",0.0010784142650663853]]}
 """
@@ -48,8 +48,8 @@ def predict_language_from_string(s):
     return JSONResponse({"predictions": predictions})
 
 
-@app.route("/upload", methods=["POST"])
-async def upload(request):
+@app.route("/predict", methods=["POST"])
+async def predict(request):
     data = await request.form()
     s = data["text"]
     return predict_language_from_string(s)
