@@ -29,4 +29,5 @@ COPY test_ruby.txt .
 COPY server.py .
 COPY export.pkl .
 
+EXPOSE 8000
 ENTRYPOINT ["python", "server.py"]
