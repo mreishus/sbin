@@ -26,7 +26,11 @@ defmodule SbinWeb.PredictController do
     ### XXX FIXME TODO
     # Make this configurable.
     # url = "http://localhost:8000/predict"
-    url = "http://sbin-classifier:8000/predict"
+    # url = "http://sbin-classifier:8000/predict"
+
+    url = Application.get_env(:sbin, :classifier)[:url]
+    Logger.info("Prediction url is [#{url}]")
+
     body = {:form, [text: text]}
     options = [{"Content-Type", "application/json"}]
 

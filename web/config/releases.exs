@@ -27,6 +27,9 @@ config :sbin, SbinWeb.Endpoint,
   http: [:inet6, port: String.to_integer(System.get_env("PORT") || "4000")],
   secret_key_base: secret_key_base
 
+classifier_url = System.get_env("CLASSIFIER_URL") || "http://localhost:8000/predict"
+config :sbin, :classifier, url: classifier_url
+
 # ## Using releases (Elixir v1.9+)
 #
 # If you are doing OTP releases, you need to instruct Phoenix
