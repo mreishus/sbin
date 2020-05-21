@@ -4,15 +4,13 @@
 
 defmodule SbinWeb.PredictController do
   use SbinWeb, :controller
+  require Logger
 
   # alias Sbin.Metrics
 
   action_fallback(SbinWeb.FallbackController)
 
   def predict(conn, %{"text" => text}) do
-    "Requested to predict" |> IO.inspect(label: "1")
-    text |> IO.inspect(label: "text")
-
     case do_predict(text) do
       {:error, reason} ->
         conn
@@ -39,12 +37,12 @@ defmodule SbinWeb.PredictController do
 
       {:ok, %HTTPoison.Response{status_code: 404}} ->
         # Metric: 404 on prediction
-        IO.puts("Url [" <> url <> "] Not found :(")
+        Logger.error("Prediction service down. #{url} not found.")
         {:error, "Prediction service down."}
 
       {:error, %HTTPoison.Error{reason: reason}} ->
         # Metric: error on prediction
-        reason |> IO.inspect(label: "prediction error")
+        Logger.error("Prediction error. #{inspect(reason)}")
         {:error, reason}
     end
   end
