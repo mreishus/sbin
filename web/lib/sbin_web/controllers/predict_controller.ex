@@ -1,6 +1,5 @@
 # TODOS
 # 1. Need to send metrics to count successful predictions and errors
-# 2. Need to make url customizable.
 
 defmodule SbinWeb.PredictController do
   use SbinWeb, :controller
