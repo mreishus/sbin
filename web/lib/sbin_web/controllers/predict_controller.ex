@@ -1,6 +1,3 @@
-# TODOS
-# 1. Need to send metrics to count successful predictions and errors
-
 defmodule SbinWeb.PredictController do
   use SbinWeb, :controller
   require Logger

@@ -7,12 +7,7 @@ VERSION=1.1.1 # Bump in AboutIndex.tsx too
 # exit when any command fails
 set -e
 
-# Disabled check 5/19/2020.  Wanted to show something
-# off in a demo.  Please fix errors and renable soon!
-# mix check
-echo "============="
-echo "MIX CHECK IS DISABLED.  FIX THIS!"
-echo "============="
+mix check
 
 echo "Building..."
 docker build --tag=mreishus/sbin:$VERSION --tag=mreishus/sbin:latest .
