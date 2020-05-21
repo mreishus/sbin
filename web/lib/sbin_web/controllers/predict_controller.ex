@@ -1,5 +1,6 @@
 defmodule SbinWeb.PredictController do
   use SbinWeb, :controller
+  alias Sbin.Metrics
   require Logger
 
   # alias Sbin.Metrics
@@ -19,11 +20,6 @@ defmodule SbinWeb.PredictController do
   end
 
   defp do_predict(text) do
-    ### XXX FIXME TODO
-    # Make this configurable.
-    # url = "http://localhost:8000/predict"
-    # url = "http://sbin-classifier:8000/predict"
-
     url = Application.get_env(:sbin, :classifier)[:url]
     Logger.info("Prediction url is [#{url}]")
 
@@ -32,16 +28,16 @@ defmodule SbinWeb.PredictController do
 
     case HTTPoison.post(url, body, options) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        # Metric: Successful prediction
+        Metrics.predict_success()
         {:ok, parse_prediction(body)}
 
       {:ok, %HTTPoison.Response{status_code: 404}} ->
-        # Metric: 404 on prediction
+        Metrics.predict_failure()
         Logger.error("Prediction service down. #{url} not found.")
         {:error, "Prediction service down."}
 
       {:error, %HTTPoison.Error{reason: reason}} ->
-        # Metric: error on prediction
+        Metrics.predict_failure()
         Logger.error("Prediction error. #{inspect(reason)}")
         {:error, reason}
     end

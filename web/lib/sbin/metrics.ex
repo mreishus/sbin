@@ -4,6 +4,28 @@ defmodule Sbin.Metrics do
   """
   alias Sbin.Notes.Note
 
+  def predict_success() do
+    Task.async(fn ->
+      %{
+        event: :predict_success,
+        when: DateTime.utc_now(),
+        env: env()
+      }
+      |> send_to_honeycomb()
+    end)
+  end
+
+  def predict_failure() do
+    Task.async(fn ->
+      %{
+        event: :predict_failure,
+        when: DateTime.utc_now(),
+        env: env()
+      }
+      |> send_to_honeycomb()
+    end)
+  end
+
   def note_created(note_params, conn) do
     Task.async(fn ->
       %{
