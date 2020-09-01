@@ -49,7 +49,7 @@ defmodule Sbin.MixProject do
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:sobelow, ">= 0.0.0", only: :dev, runtime: false},
       {:pow, "~> 1.0.19"},
-      {:parent, "~> 0.9.0"},
+      {:parent, "~> 0.10.0"},
       {:poison, "~> 4.0.1"},
       {:httpoison, "~> 1.6"}
     ]
