@@ -61,7 +61,7 @@
     "babel-eslint": "10.x",
     "babel-loader": "^8.1.0",
     "copy-webpack-plugin": "^6.0.3",
-    "css-loader": "^3.6.0",
+    "css-loader": "^5.1.1",
     "eslint": "7.x",
     "eslint-config-react-app": "^5.2.1",
     "eslint-plugin-flowtype": "5.x",
