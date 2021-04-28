@@ -1,0 +1,86 @@
+version: 2
+updates:
+- package-ecosystem: mix
+  directory: "/web"
+  schedule:
+    interval: monthly
+    time: "07:07"
+    timezone: US/Central
+  open-pull-requests-limit: 10
+  assignees:
+  - mreishus
+  ignore:
+  - dependency-name: phoenix
+    versions:
+    - 1.5.7
+  - dependency-name: postgrex
+    versions:
+    - 0.15.7
+  - dependency-name: ecto_sql
+    versions:
+    - 3.5.3
+  - dependency-name: parent
+    versions:
+    - 0.11.2
+  - dependency-name: pow
+    versions:
+    - 1.0.21
+- package-ecosystem: npm
+  directory: "/web/assets"
+  schedule:
+    interval: monthly
+    time: "07:07"
+    timezone: US/Central
+  open-pull-requests-limit: 10
+  assignees:
+  - mreishus
+  ignore:
+  - dependency-name: "@types/node"
+    versions:
+    - 14.14.17
+    - 14.14.22
+  - dependency-name: "@typescript-eslint/parser"
+    versions:
+    - 4.11.1
+    - 4.14.1
+  - dependency-name: "@types/react-select"
+    versions:
+    - 3.1.2
+    - 4.0.11
+  - dependency-name: webpack-cli
+    versions:
+    - 4.3.1
+    - 4.4.0
+  - dependency-name: "@typescript-eslint/eslint-plugin"
+    versions:
+    - 4.11.1
+    - 4.14.1
+  - dependency-name: "@babel/preset-env"
+    versions:
+    - 7.12.11
+  - dependency-name: "@types/jest"
+    versions:
+    - 26.0.19
+  - dependency-name: "@types/react-dom"
+    versions:
+    - 17.0.0
+  - dependency-name: css-loader
+    versions:
+    - 5.0.1
+- package-ecosystem: docker
+  directory: "/web"
+  schedule:
+    interval: monthly
+    time: "07:07"
+    timezone: US/Central
+  open-pull-requests-limit: 10
+  assignees:
+  - mreishus
+  ignore:
+  - dependency-name: alpine
+    versions:
+    - 3.12.3
+    - 3.13.1
+  - dependency-name: elixir
+    versions:
+    - 1.11.2.pre.alpine
